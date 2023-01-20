@@ -202,7 +202,7 @@ internal abstract class ASTCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 出王冠卡
     /// </summary>
-    public static BaseAction CrownPlay { get; } = new(ActionID.CrownPlay)
+    public static BaseAction MinorArcanafor { get; } = new(ActionID.MinorArcana)
     {
         ActionCheck = b => DrawnCrownCard is CardType.LADY or CardType.LORD,
     };
