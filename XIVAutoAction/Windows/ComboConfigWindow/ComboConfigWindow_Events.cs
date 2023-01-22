@@ -40,6 +40,14 @@ internal partial class ComboConfigWindow
                     Service.Configuration.Events[i].MacroIndex = macroindex;
                 }
 
+                bool isEnabled = Service.Configuration.Events[i].IsEnable;
+                if (ImGui.Checkbox($"{LocalizationManager.RightLang.Configwindow_Events_EnableMacro}##ShareMacro{i}",
+                    ref isEnabled))
+                {
+                    Service.Configuration.Events[i].IsEnable = isEnabled;
+                    Service.Configuration.Save();
+                }
+
                 bool isShared = Service.Configuration.Events[i].IsShared;
                 if (ImGui.Checkbox($"{LocalizationManager.RightLang.Configwindow_Events_ShareMacro}##ShareMacro{i}",
                     ref isShared))

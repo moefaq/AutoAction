@@ -106,7 +106,7 @@ namespace XIVAutoAttack.SigReplacers
             foreach (var item in Service.Configuration.Events)
             {
                 if (item.Name != action.Name) continue;
-                if (item.MacroIndex < 0 || item.MacroIndex > 99) break;
+                if (item.MacroIndex < 0 || item.MacroIndex > 99 || !item.IsEnable) break;
 
                 MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
                     RaptureMacroModule.Instance->Individual[item.MacroIndex]));
