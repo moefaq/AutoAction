@@ -43,6 +43,10 @@
 		  <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
+    <Reference Include="XivCommon">
+      <HintPath>XivCommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 	
 <ItemGroup>
