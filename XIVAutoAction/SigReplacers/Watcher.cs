@@ -103,23 +103,37 @@ namespace AutoAction.SigReplacers
             _actions.Enqueue(new ActionRec(_timeLastActionUsed, action));
 
             //Macro
-            if(Service.Configuration.EnableEvents)
+            if (Service.Configuration.EnableEvents)
             {
-                Service.ChatGui.Print("当前目标"+tar.Name);
                 foreach (var item in Service.Configuration.Events)
                 {
-                    if (item.Name != action.Name) continue;
-                    // 先判断是否开启
-                    if (!item.IsEnable) break;
-                    // 再判断命令是否为空，且开启了命令执行
-                    if (item.macroString != "" && !item.noCmd)
+                    // 遍历配置中的event数组
+                    // 第一步，判断item是否被开启
+                    if (item.IsEnable)
                     {
-                        AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                        // 第二步，以|为分隔符拆分字符串，当字符串中没有|时，相当于没有拆分
+                        string[] names = item.Name.Split('|');
+                        foreach (string name in names)
+                        {
+                            // 如果拆分后的字符串等于当前使用技能
+                            if (name == action.Name)
+                            {
+                                // 判断（命令不为空&&开启了命令执行）
+                                if (item.macroString != "" && !item.noCmd)
+                                {
+                                    // 使用xivcommon执行命令，dalamud自带的发不了聊天栏
+                                    AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                                }
+
+                                // 判断（宏的数字有效&&）执行宏
+                                if (item.MacroIndex > 0 && item.MacroIndex < 99 && !item.noMacro)
+                                {
+                                    MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
+                                    RaptureMacroModule.Instance->Individual[item.MacroIndex]));
+                                }
+                            }
+                        }
                     }
-                    // 再执行宏
-                    if (item.MacroIndex < 0 || item.MacroIndex > 99 || item.noMacro) break;
-                    MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
-                        RaptureMacroModule.Instance->Individual[item.MacroIndex]));
                 }
             }
             
