@@ -1,11 +1,11 @@
 using Dalamud.Game.ClientState.JobGauge.Types;
 using System;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
 
-namespace XIVAutoAttack.Combos.Basic;
+namespace AutoAction.Combos.Basic;
 
 internal abstract class MCHCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enum
 {
@@ -168,7 +168,7 @@ internal abstract class MCHCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 策动
     /// </summary>
-    public static BaseAction Tactician { get; } = new(ActionID.Tactician, true, isTimeline: true)
+    public static BaseAction Tactician { get; } = new(ActionID.Tactician, true)
     {
         ActionCheck = b => !Player.HasStatus(false, StatusID.Troubadour,
             StatusID.Tactician1,

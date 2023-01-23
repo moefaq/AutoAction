@@ -1,12 +1,12 @@
 ﻿using Dalamud.Game.ClientState.JobGauge.Types;
 using System;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
+using AutoAction.Actions;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
 
-namespace XIVAutoAttack.Combos.Basic;
+namespace AutoAction.Combos.Basic;
 
 internal abstract class RPRCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enum
 {
@@ -304,7 +304,7 @@ internal abstract class RPRCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 神秘纹 加盾
     /// </summary>
-    public static BaseAction ArcaneCrest { get; } = new(ActionID.ArcaneCrest, true, isTimeline: true);
+    public static BaseAction ArcaneCrest { get; } = new(ActionID.ArcaneCrest, true);
     #endregion
 
 

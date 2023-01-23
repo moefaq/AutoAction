@@ -4,13 +4,13 @@ using Lumina.Excel.GeneratedSheets;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Localization;
-using XIVAutoAttack.Windows;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Localization;
+using AutoAction.Windows;
 
-namespace XIVAutoAttack.Combos.Script.Conditions;
+namespace AutoAction.Combos.Script.Conditions;
 
 internal class TargetCondition : ICondition
 {
@@ -80,7 +80,7 @@ internal class TargetCondition : ICondition
                 break;
 
             case TargetConditionType.StatusEnd:
-                result = !tar.WillStatusEnd(DistanceOrTime, FromSelf, Status);
+                result = !tar.WillStatusEnd(DistanceOrTime, FromSelf, true, Status);
                 break;
 
             case TargetConditionType.StatusEndGCD:

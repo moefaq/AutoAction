@@ -1,5 +1,5 @@
 ﻿
-namespace XIVAutoAttack.Data
+namespace AutoAction.Data
 {
     public enum ActionID : uint
     {
@@ -135,10 +135,7 @@ namespace XIVAutoAttack.Data
         /// </summary>
         MinorArcana = 7443,
 
-        /// <summary>
-        /// 出王冠卡
-        /// </summary>
-        CrownPlay = 25869,
+        
 
         /// <summary>
         /// 太阳神之衡

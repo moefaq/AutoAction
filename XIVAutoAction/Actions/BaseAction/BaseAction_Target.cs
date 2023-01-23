@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Updaters;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Updaters;
 
-namespace XIVAutoAttack.Actions.BaseAction
+namespace AutoAction.Actions.BaseAction
 {
     internal partial class BaseAction
     {
@@ -425,7 +425,7 @@ namespace XIVAutoAttack.Actions.BaseAction
         }
 
         /// <summary>
-        /// 
+        /// 检查状态Eot
         /// </summary>
         /// <param name="tar"></param>
         /// <returns>True for add Eot.</returns>

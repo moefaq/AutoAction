@@ -2,13 +2,13 @@
 using FFXIVClientStructs.FFXIV.Client.Game;
 using System;
 using System.Linq;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.SigReplacers;
-using XIVAutoAttack.Updaters;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.SigReplacers;
+using AutoAction.Updaters;
 
-namespace XIVAutoAttack.Actions.BaseAction
+namespace AutoAction.Actions.BaseAction
 {
     internal partial class BaseAction
     {
@@ -151,13 +151,6 @@ namespace XIVAutoAttack.Actions.BaseAction
             //还冷却不下来呢，来不及。
             if (!WillCooldown) return false;
 
-            //看看有没有目标，如果没有，就说明不符合条件。
-            if (!FindTarget(mustUse, out var target)) return false;
-
-            //用于自定义的要求没达到
-            if (ActionCheck != null && !ActionCheck(target)) return false;
-            if (!skipDisable && ComboCheck != null && !ComboCheck(target)) return false;
-
             if (IsGeneralGCD)
             {
                 if (!emptyOrSkipCombo)
@@ -202,6 +195,13 @@ namespace XIVAutoAttack.Actions.BaseAction
                 if (!emptyOrSkipCombo && RecastTimeRemain > ActionUpdater.WeaponRemain + ActionUpdater.WeaponTotal)
                     return false;
             }
+
+            //看看有没有目标，如果没有，就说明不符合条件。
+            if (!FindTarget(mustUse, out var target)) return false;
+
+            //用于自定义的要求没达到
+            if (ActionCheck != null && !ActionCheck(target)) return false;
+            if (!skipDisable && ComboCheck != null && !ComboCheck(target)) return false;
 
             //看看这样能不能不会被清除。
             Target = target;

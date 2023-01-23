@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Combos.Basic;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Updaters;
-using static XIVAutoAttack.Combos.Tank.PLDCombos.PLDCombo_Default;
+using AutoAction.Actions;
+using AutoAction.Combos.Basic;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Updaters;
+using static AutoAction.Combos.Tank.PLDCombos.PLDCombo_Default;
 
-namespace XIVAutoAttack.Combos.Tank.PLDCombos;
+namespace AutoAction.Combos.Tank.PLDCombos;
 
 internal sealed class PLDCombo_Default : PLDCombo_Base<CommandType>
 {
@@ -46,7 +46,7 @@ internal sealed class PLDCombo_Default : PLDCombo_Base<CommandType>
         //魔法三种姿势,有安魂祈祷buff,且没在战逃中
         if (Player.HasStatus(true, StatusID.Requiescat) && !Player.HasStatus(true, StatusID.FightOrFlight, StatusID.SwordOath))
         {
-            if (Player.StatusStack(true, StatusID.Requiescat) == 1 && Player.WillStatusEnd(3, false, StatusID.Requiescat) || Player.CurrentMp <= 2000)
+            if (Player.StatusStack(true, StatusID.Requiescat) == 1 && Player.WillStatusEnd(3, false, true, StatusID.Requiescat) || Player.CurrentMp <= 2000)
             {
                 if (Confiteor.ShouldUse(out act, mustUse: true)) return true;
             }
@@ -101,7 +101,7 @@ internal sealed class PLDCombo_Default : PLDCombo_Base<CommandType>
             if (FightorFlight.ShouldUse(out act)) return true;
 
             //安魂祈祷
-            if (Requiescat.ShouldUse(out act, mustUse: true) && Player.HasStatus(true, StatusID.FightOrFlight) && Player.WillStatusEnd(17, true, StatusID.FightOrFlight) && Target.HasStatus(true, StatusID.GoringBlade)) return true;
+            if (Requiescat.ShouldUse(out act, mustUse: true) && Player.HasStatus(true, StatusID.FightOrFlight) && Player.WillStatusEnd(17, true, true, StatusID.FightOrFlight) && Target.HasStatus(true, StatusID.GoringBlade)) return true;
         }
 
         //厄运流转

@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.SigReplacers;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.SigReplacers;
 using Action = Lumina.Excel.GeneratedSheets.Action;
 
-namespace XIVAutoAttack.Updaters
+namespace AutoAction.Updaters
 {
     internal static partial class TargetUpdater
     {
@@ -85,7 +85,7 @@ namespace XIVAutoAttack.Updaters
                          try
                          {
                              return t.TargetObject == Service.ClientState.LocalPlayer ||
-                                ((FFXIVClientStructs.FFXIV.Client.Game.Object.GameObject*)(void*)t.Address)->FateId == FateManager.Instance()->CurrentFate->FateId;
+                                ((FFXIVClientStructs.FFXIV.Client.Game.Object.GameObject*)(void*)t.Address)->FateId == FateManager.Instance()->CurrentFate->FateId && Service.ClientState.LocalPlayer.Level <= FateManager.Instance()->CurrentFate->MaxLevel;
                          }
                          catch
                          {

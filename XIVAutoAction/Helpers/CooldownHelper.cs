@@ -1,9 +1,9 @@
 ﻿using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using System;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Updaters;
+using AutoAction.Data;
+using AutoAction.Updaters;
 
-namespace XIVAutoAttack.Helpers
+namespace AutoAction.Helpers
 {
     internal static class CooldownHelper
     {
@@ -52,9 +52,9 @@ namespace XIVAutoAttack.Helpers
         /// </summary>
         /// <param name="gcdelapsed">已经进行了多少秒了</param>
         /// <returns>是否已经冷却了这么久了</returns>
-        internal static bool ElapsedAfter(float elapsed, float gcdelapsed)
+        internal static bool ElapsedAfter(float elapsed, float gcdelapsed, bool addWeaponElapsed = true)
         {
-            gcdelapsed += ActionUpdater.WeaponElapsed;
+            if (addWeaponElapsed) gcdelapsed += ActionUpdater.WeaponElapsed;
             return IsLessThan(gcdelapsed, elapsed);
         }
 

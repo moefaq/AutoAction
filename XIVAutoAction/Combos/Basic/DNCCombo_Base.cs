@@ -1,13 +1,13 @@
 using Dalamud.Game.ClientState.JobGauge.Types;
 using System;
 using System.Linq;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
+using AutoAction.Actions;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
 
-namespace XIVAutoAttack.Combos.Basic;
+namespace AutoAction.Combos.Basic;
 internal abstract class DNCCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enum
 {
     private static DNCGauge JobGauge => Service.JobGauges.Get<DNCGauge>();
@@ -229,7 +229,7 @@ internal abstract class DNCCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 防守之桑巴
     /// </summary>
-    public static BaseAction ShieldSamba { get; } = new(ActionID.ShieldSamba, true, isTimeline: true)
+    public static BaseAction ShieldSamba { get; } = new(ActionID.ShieldSamba, true)
     {
         ActionCheck = b => !Player.HasStatus(false, StatusID.Troubadour,
             StatusID.Tactician1,
@@ -240,7 +240,7 @@ internal abstract class DNCCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 治疗之华尔兹
     /// </summary>
-    public static BaseAction CuringWaltz { get; } = new(ActionID.CuringWaltz, true, isTimeline: true);
+    public static BaseAction CuringWaltz { get; } = new(ActionID.CuringWaltz, true);
 
     /// <summary>
     /// 闭式舞姿
@@ -303,14 +303,14 @@ internal abstract class DNCCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
         if (!IsDancing) return false;
 
         //标准舞步结束
-        if (Player.HasStatus(true, StatusID.StandardStep) && Player.WillStatusEnd(1, true, StatusID.StandardStep) || StandardFinish.ShouldUse(out _, mustUse: true))
+        if (Player.HasStatus(true, StatusID.StandardStep) && Player.WillStatusEnd(1, true, true, StatusID.StandardStep) || StandardFinish.ShouldUse(out _, mustUse: true))
         {
             act = StandardStep;
             return true;
         }
 
         //技巧舞步结束
-        if (Player.HasStatus(true, StatusID.TechnicalStep) && Player.WillStatusEnd(1, true, StatusID.TechnicalStep) || TechnicalFinish.ShouldUse(out _, mustUse: true))
+        if (Player.HasStatus(true, StatusID.TechnicalStep) && Player.WillStatusEnd(1, true, true, StatusID.TechnicalStep) || TechnicalFinish.ShouldUse(out _, mustUse: true))
         {
             act = TechnicalStep;
             return true;

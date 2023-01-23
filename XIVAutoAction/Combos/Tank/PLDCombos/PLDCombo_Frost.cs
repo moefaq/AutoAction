@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Combos.Basic;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Configuration;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using static XIVAutoAttack.Combos.Tank.PLDCombos.PLDCombo_Frost;
+using AutoAction.Actions;
+using AutoAction.Combos.Basic;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Configuration;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using static AutoAction.Combos.Tank.PLDCombos.PLDCombo_Frost;
 
-namespace XIVAutoAttack.Combos.Tank.PLDCombos;
+namespace AutoAction.Combos.Tank.PLDCombos;
 
 internal sealed class PLDCombo_Frost : PLDCombo_Base<CommandType>
 {
@@ -157,7 +157,7 @@ internal sealed class PLDCombo_Frost : PLDCombo_Base<CommandType>
         if (Requiescat.ShouldUse(out act))//安魂祈祷
         {
             if (Player.HasStatus(true, StatusID.FightOrFlight)//持有战逃buff
-            && Player.WillStatusEnd(17, true, StatusID.FightOrFlight)) return true;//战逃buff时间小于17s
+            && Player.WillStatusEnd(17, true, true, StatusID.FightOrFlight)) return true;//战逃buff时间小于17s
             if (!Player.HasStatus(true, StatusID.FightOrFlight)//没有战逃buff
             && !FightorFlight.WillHaveOneCharge(13)) return true;//战逃冷却在13s以上
         }

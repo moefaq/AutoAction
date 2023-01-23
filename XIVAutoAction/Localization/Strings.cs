@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using XIVAutoAttack.Combos.Script.Actions;
+using AutoAction.Combos.Script.Actions;
 
-namespace XIVAutoAttack.Localization;
+namespace AutoAction.Localization;
 
 internal class Strings
 {
@@ -14,7 +14,7 @@ internal class Strings
     public string Commands_ChangeResult { get; set; } = "The modified result is";
     public string Commands_CannotFind { get; set; } = "Unrecognized";
     public string Commands_OpenSettings { get; set; } = "The settings interface has been opened";
-    public string Commands_SayHelloToAuthor { get; set; } = "This \"{0}\" is probably one of the authors of the \"XIV Auto Attack\", so say hello to him!";
+    public string Commands_SayHelloToAuthor { get; set; } = "The \"{0}\" in the party is one of the developers of \"Auto Action\". If you think the plugin is awsome, just give him a commendation.0w0";
 
     #endregion
 
@@ -31,7 +31,7 @@ internal class Strings
         = "In this window, you can modify the conditions of use for each action.";
 
     public string ConfigWindow_HelpItem_Description { get; set; }
-        = "In this window, you can see all XIVAutoAttack built-in commands for combat. ";
+        = "In this window, you can see all AutoAction built-in commands for combat. ";
 
     public string Configwindow_HelpItem_AttackSmart { get; set; }
         = "Start attacking in smart mode(auto-targeting) when out of combat, otherwise switch the target according to the conditions.";
@@ -96,13 +96,14 @@ internal class Strings
     public string Configwindow_Events_EnableMacro { get; set; } = "Enable";
     public string Configwindow_Events_RemoveEvent { get; set; } = "Delete Event";
     public string Configwindow_Params_Description { get; set; } = "In this window, you can set the parameters about the using way of actions.";
+    public string Configwindow_Params_RestoreDefault { get; set; } = "Restore Default";
     public string Configwindow_Params_NeverReplaceIcon { get; set; } = "Never Replace Icons";
     public string Configwindow_Params_NeverReplaceIconDesc { get; set; } = "Icon replacement: Repose is automatically displayed as the next skill to be used";
     public string Configwindow_Params_UseOverlayWindow { get; set; } = "Display top overlay";
     public string Configwindow_Params_UseOverlayWindowDesc { get; set; } = "This window is currently used to cue the body position in advance.";
+    public string Configwindow_Params_AutoOffWhenChangeMap { get; set; } = "Auto Off when changing map";
+    public string Configwindow_Params_AutoOffWhenChangeMapDesc { get; set; } = "If disable, please make sure you manually AttackCancel after leaving the duty";
     public string Configwindow_Params_BasicSettings { get; set; } = "Basic settings";
-    public string Configwindow_Params_WeaponDelay { get; set; } = "Set the random interval between GCD (seconds)";
-    public string Configwindow_Params_WeaponFaster { get; set; } = "Set the time advance of use actions";
     public string Configwindow_Params_WeaponInterval { get; set; } = "Set the interval between abilities using";
     public string Configwindow_Params_InterruptibleTime { get; set; } = "Set the delay of interrupting";
     public string Configwindow_Params_SpecialDuration { get; set; } = "Set the duration of special windows set by commands";
@@ -169,7 +170,6 @@ internal class Strings
     public string Configwindow_Params_AttackMarkAOE { get; set; } = "Forced use of AOE";
     public string Configwindow_Params_AttackMarkAOEDesc { get; set; } = "Attention: Checking this option , AA will attack as many hostile targets as possible, while ignoring whether the attack will cover the marked target.";
     public string Configwindow_Params_FilterStopMark { get; set; } = "Never attack targets with stop markers";
-    public string Configwindow_Params_ObjectMinRadius { get; set; } = "Set the minimum target circle threshold possessed by the attack target";
     public string Configwindow_Params_MoveTargetAngle { get; set; } = "The size of the sector angle that can be selected as the moveable target";
     public string Configwindow_Params_MoveTargetAngleDesc { get; set; } = "If the selection mode is based on character facing, i.e., targets within the character's viewpoint are movable targets. \nIf the selection mode is screen-centered, i.e., targets within a sector drawn upward from the character's point are movable targets.";
     public string Configwindow_Params_ChangeTargetForFate { get; set; } = "Select only Fate targets in Fate";
@@ -186,8 +186,7 @@ internal class Strings
     public string Configwindow_Params_ConditionDelete { get; set; } = "Delete";
     public string Configwindow_About_Declaration { get; set; } = "This plugin is open source and free, please do not pay for this plugin from any source. \nIf you have got this plugin from paid sources, please immediately initiate a refund, provide a bad review and report the seller";
     public string Configwindow_About_XianYu { get; set; } = "Including but not limited to the following online sellers (in no particular order):";
-    public string Configwindow_About_Owner { get; set; } = "Plugin author: ArchiDog1998 (秋水) reserves the right of final interpretation";
-    public string Configwindow_About_Collaborators { get; set; } = "Co-developed by: 汐ベMoon, gamous, 逆光, sciuridae564, 玖祁, 牙刷play";
+    public string Configwindow_About_Owner { get; set; } = "Plugin author: moewcorp";
     public string Configwindow_About_Github { get; set; } = "Version updates for this plugin are posted on Github";
     public string Configwindow_About_Discord { get; set; } = "Click to join Discord for discussion";
     public string Configwindow_About_Wiki { get; set; } = "Click to view Wiki";
@@ -242,7 +241,7 @@ internal class Strings
     #region Actions
     public string Action_Friendly { get; set; } = "Support";
     public string Action_Attack { get; set; } = "Attack";
-    public string Action_WrongLocation { get; set; } = "要打{0}!";
+    public string Action_WrongLocation { get; set; } = "Should attack{0}!";
 
     #endregion
 

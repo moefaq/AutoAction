@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace XIVAutoAttack.Localization;
+namespace AutoAction.Localization;
 
 internal class LocalizationManager : IDisposable
 {
@@ -45,13 +45,13 @@ internal class LocalizationManager : IDisposable
             RightLang = new Strings();
         }
 
-        XIVAutoAttackPlugin.ChangeWindowHeader();
+        AutoActionPlugin.ChangeWindowHeader();
     }
 
 #if DEBUG
     public void ExportLocalization()
     {
-        var directory = @"D:\OneDrive - stu.zafu.edu.cn\PartTime\FFXIV\XIVAutoAction\XIVAutoAction\Localization";
+        var directory = @"E:\AutoAction\XIVAutoAction\Localization";
         if (!Directory.Exists(directory)) return;
 
         //Default values.

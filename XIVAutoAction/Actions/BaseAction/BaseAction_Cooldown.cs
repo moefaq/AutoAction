@@ -1,9 +1,9 @@
 ﻿using FFXIVClientStructs.FFXIV.Client.Game;
 using System;
-using XIVAutoAttack.Helpers;
+using AutoAction.Helpers;
 
 
-namespace XIVAutoAttack.Actions.BaseAction
+namespace AutoAction.Actions.BaseAction
 {
     internal partial class BaseAction
     {
@@ -24,12 +24,13 @@ namespace XIVAutoAttack.Actions.BaseAction
         /// 这个技能已经进入冷却多少秒了
         /// </summary>
         /// <param name="gcdelapsed">已经进行了多少秒了</param>
+        /// <param name="addWeaponElapsed">是否要把gcd经过时间加上去</param>
         /// <returns>是否已经冷却了这么久了(不在冷却会返回false)</returns>
-        internal bool ElapsedAfter(float gcdelapsed)
+        internal bool ElapsedAfter(float gcdelapsed, bool addWeaponElapsed = true)
         {
             if (!IsCoolDown) return false;
             var elapsed = RecastTimeElapsedOneCharge;
-            return CooldownHelper.ElapsedAfter(elapsed, gcdelapsed);
+            return CooldownHelper.ElapsedAfter(elapsed, gcdelapsed, addWeaponElapsed);
         }
 
         /// <summary>
@@ -49,18 +50,21 @@ namespace XIVAutoAttack.Actions.BaseAction
         /// 几秒钟以后能转好嘛
         /// </summary>
         /// <param name="remain">要多少秒呢</param>
+        /// <param name="addWeaponRemain">是否要把GCD剩余时间加进去</param>
         /// <returns>这个时间点是否起码有一层可以用</returns>
-        internal bool WillHaveOneCharge(float remain)
-        {
-            return WillHaveOneCharge(remain, true);
-        }
-
-        private bool WillHaveOneCharge(float remain, bool addWeaponRemain)
+        internal bool WillHaveOneCharge(float remain, bool addWeaponRemain = true)
         {
             if (HaveOneCharge) return true;
             var recast = RecastTimeRemainOneCharge;
             return CooldownHelper.RecastAfter(recast, remain, addWeaponRemain);
         }
+
+        //private bool WillHaveOneCharge(float remain, bool addWeaponRemain)
+        //{
+        //    if (HaveOneCharge) return true;
+        //    var recast = RecastTimeRemainOneCharge;
+        //    return CooldownHelper.RecastAfter(recast, remain);
+        //}
 
 
         private unsafe RecastDetail* CoolDownDetail => ActionManager.Instance()->GetRecastGroupDetail(CoolDownGroup - 1);

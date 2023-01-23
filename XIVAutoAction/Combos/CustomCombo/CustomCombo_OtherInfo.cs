@@ -3,14 +3,14 @@ using Dalamud.Game.ClientState.Objects.Types;
 using System;
 using System.Linq;
 using System.Reflection;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.SigReplacers;
-using XIVAutoAttack.Updaters;
-using static XIVAutoAttack.SigReplacers.Watcher;
+using AutoAction.Actions;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.SigReplacers;
+using AutoAction.Updaters;
+using static AutoAction.SigReplacers.Watcher;
 
-namespace XIVAutoAttack.Combos.CustomCombo
+namespace AutoAction.Combos.CustomCombo
 {
     internal abstract partial class CustomCombo<TCmd> where TCmd : Enum
     {
@@ -151,8 +151,8 @@ namespace XIVAutoAttack.Combos.CustomCombo
         /// <param name="remain">剩余时间(职业量谱等的剩余时间,单位必须是秒)</param>
         /// <param name="remainNeed">需要多少秒</param>
         /// <returns>这个时间点是否已经结束,即(<paramref name="remain"/> 小于等于 <paramref name="remainNeed"/>)</returns>
-        protected static bool EndAfter(float remain, float remainNeed)
-            => CooldownHelper.RecastAfter(remain, remainNeed);
+        protected static bool EndAfter(float remain, float remainNeed, bool addWeaponRemain = true)
+            => CooldownHelper.RecastAfter(remain, remainNeed, addWeaponRemain);
 
         public MethodInfo[] AllLast => GetType().GetStaticBoolMethodInfo(m =>
         {

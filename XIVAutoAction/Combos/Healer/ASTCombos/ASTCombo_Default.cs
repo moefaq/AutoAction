@@ -1,15 +1,15 @@
 using Dalamud.Game.ClientState.JobGauge.Enums;
 using System.Collections.Generic;
 using System.Linq;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Combos.Basic;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Updaters;
-using static XIVAutoAttack.Combos.Healer.ASTCombos.ASTCombo_Default;
+using AutoAction.Actions;
+using AutoAction.Combos.Basic;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Updaters;
+using static AutoAction.Combos.Healer.ASTCombos.ASTCombo_Default;
 
-namespace XIVAutoAttack.Combos.Healer.ASTCombos;
+namespace AutoAction.Combos.Healer.ASTCombos;
 
 internal sealed class ASTCombo_Default : ASTCombo_Base<CommandType>
 {
@@ -29,7 +29,7 @@ internal sealed class ASTCombo_Default : ASTCombo_Base<CommandType>
 
     public override SortedList<DescType, string> DescriptionDict => new()
     {
-        {DescType.HealArea, $"GCD: {AspectedHelios}, {Helios}\n                     能力: {EarthlyStar}, {CrownPlay}, {CelestialOpposition}"},
+        {DescType.HealArea, $"GCD: {AspectedHelios}, {Helios}\n                     能力: {EarthlyStar}, {MinorArcanafor}, {CelestialOpposition}"},
         {DescType.HealSingle, $"GCD: {AspectedBenefic}, {Benefic2}, {Benefic}\n                     能力: {CelestialIntersection}, {EssentialDignity}"},
         {DescType.DefenseArea, $"{CollectiveUnconscious}"},
         {DescType.DefenseSingle, $"{Exaltation}，给被挨打的T"},
@@ -159,7 +159,7 @@ internal sealed class ASTCombo_Default : ASTCombo_Base<CommandType>
         if (DrawnCrownCard == CardType.LORD || MinorArcana.WillHaveOneChargeGCD(1))
         {
             //进攻牌，随便发。或者CD要转好了，赶紧发掉。
-            if (CrownPlay.ShouldUse(out act)) return true;
+             if (MinorArcanafor.ShouldUse(out act)) return true;
         }
 
         //发牌
@@ -181,7 +181,7 @@ internal sealed class ASTCombo_Default : ASTCombo_Base<CommandType>
         if (CelestialIntersection.ShouldUse(out act, emptyOrSkipCombo: true)) return true;
 
         //奶量牌，要看情况。
-        if (DrawnCrownCard == CardType.LADY && CrownPlay.ShouldUse(out act)) return true;
+        if (DrawnCrownCard == CardType.LADY && MinorArcanafor.ShouldUse(out act)) return true;
 
         var tank = TargetUpdater.PartyTanks;
         var isBoss = Malefic.IsTargetBoss;
@@ -226,7 +226,7 @@ internal sealed class ASTCombo_Default : ASTCombo_Base<CommandType>
         if (Player.HasStatus(true, StatusID.HoroscopeHelios) && Horoscope.ShouldUse(out act)) return true;
 
         //奶量牌，要看情况。
-        if (DrawnCrownCard == CardType.LADY && CrownPlay.ShouldUse(out act)) return true;
+        if (DrawnCrownCard == CardType.LADY && MinorArcanafor.ShouldUse(out act)) return true;
 
         return false;
     }

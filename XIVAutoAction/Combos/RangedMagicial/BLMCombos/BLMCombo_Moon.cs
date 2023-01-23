@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Combos.Basic;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Configuration;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Updaters;
-using static XIVAutoAttack.Combos.RangedMagicial.BLMCombo_Moon;
-using static XIVAutoAttack.SigReplacers.Watcher;
+using AutoAction.Actions;
+using AutoAction.Combos.Basic;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Configuration;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Updaters;
+using static AutoAction.Combos.RangedMagicial.BLMCombo_Moon;
+using static AutoAction.SigReplacers.Watcher;
 
-namespace XIVAutoAttack.Combos.RangedMagicial;
+namespace AutoAction.Combos.RangedMagicial;
 internal sealed partial class BLMCombo_Moon : BLMCombo_Base<CommandType>
 {
     public override string GameVersion => "6.18";
@@ -40,7 +40,7 @@ internal sealed partial class BLMCombo_Moon : BLMCombo_Base<CommandType>
     /// </summary>
     /// <param name="time"></param>
     /// <returns></returns>
-    internal static bool TargetThunderWillEnd(float time) => Target.WillStatusEnd(time, false, StatusID.Thunder, StatusID.Thunder2, StatusID.Thunder3, StatusID.Thunder4);
+    internal static bool TargetThunderWillEnd(float time) => Target.WillStatusEnd(time, false, true, StatusID.Thunder, StatusID.Thunder2, StatusID.Thunder3, StatusID.Thunder4);
     protected override bool CanHealSingleAbility => false;
     /// <summary>
     /// 计算魔法的咏唱或GCD时间
@@ -289,7 +289,7 @@ internal sealed partial class BLMCombo_Moon : BLMCombo_Base<CommandType>
             {
                 //没雷dot
                 if (!TargetHasThunder || TargetThunderWillEnd(3)) return true;
-                if (HasThunder && Player.WillStatusEnd(3, true, StatusID.Thundercloud)) return true;
+                if (HasThunder && Player.WillStatusEnd(3, true, true, StatusID.Thundercloud)) return true;
             }
             //冰3
             if (UmbralIceStacks != 3 && Blizzard3.ShouldUse(out act)) return true;
@@ -318,7 +318,7 @@ internal sealed partial class BLMCombo_Moon : BLMCombo_Base<CommandType>
             {
                 //没雷dot
                 if (!TargetHasThunder || TargetThunderWillEnd(3)) return true;
-                if (HasThunder && Player.WillStatusEnd(3, true, StatusID.Thundercloud)) return true;
+                if (HasThunder && Player.WillStatusEnd(3, true, true, StatusID.Thundercloud)) return true;
             }
             //火1
             if (!Paradox.EnoughLevel && Fire.ShouldUse(out act))
@@ -716,7 +716,7 @@ internal sealed partial class BLMCombo_Moon : BLMCombo_Base<CommandType>
             if (UmbralIceStacks == 3 || StandardLoop)
             {
                 if (!TargetHasThunder || TargetThunderWillEnd(3)) return true;
-                if (HasThunder && Player.WillStatusEnd(4, true, StatusID.Thundercloud)) return true;
+                if (HasThunder && Player.WillStatusEnd(4, true, true, StatusID.Thundercloud)) return true;
                 return false;
             }
             //有雷dot,但10秒结束不了,不释放
@@ -746,7 +746,7 @@ internal sealed partial class BLMCombo_Moon : BLMCombo_Base<CommandType>
 
             if (TargetHasThunder && TargetThunderWillEnd(3)) return true;
 
-            if (HasThunder && Player.WillStatusEnd(4, true, StatusID.Thundercloud)) return true;
+            if (HasThunder && Player.WillStatusEnd(4, true, true, StatusID.Thundercloud)) return true;
 
             //if (!HasThunder && (!TargetHasThunder || TargetHasThunder && TargetThunderWillEnd(3))) return true;
 

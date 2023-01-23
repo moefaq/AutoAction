@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace XIVAutoAttack.Updaters
+namespace AutoAction.Updaters
 {
     internal static class MajorUpdater
     {
@@ -58,7 +58,6 @@ namespace XIVAutoAttack.Updaters
         public static void Dispose()
         {
             Service.Framework.Update -= FrameworkUpdate;
-            ActionUpdater.Dispose();
             PreviewUpdater.Dispose();
             MovingUpdater.Dispose();
         }

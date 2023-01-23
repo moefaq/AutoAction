@@ -1,12 +1,12 @@
 using Dalamud.Game.ClientState.JobGauge.Types;
 using System;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
+using AutoAction.Actions;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
 
-namespace XIVAutoAttack.Combos.Basic;
+namespace AutoAction.Combos.Basic;
 
 internal abstract class SAMCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enum
 {
@@ -200,7 +200,7 @@ internal abstract class SAMCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// ÐÄÑÛ
     /// </summary>
-    public static BaseAction ThirdEye { get; } = new(ActionID.ThirdEye, true, isTimeline: true);
+    public static BaseAction ThirdEye { get; } = new(ActionID.ThirdEye, true);
 
     /// <summary>
     /// Ñà·É

@@ -2,14 +2,14 @@ using Dalamud.Game.ClientState.JobGauge.Enums;
 using Dalamud.Game.ClientState.JobGauge.Types;
 using System;
 using System.Linq;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Updaters;
+using AutoAction.Actions;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Updaters;
 
-namespace XIVAutoAttack.Combos.Basic;
+namespace AutoAction.Combos.Basic;
 
 internal abstract class BRDCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enum
 {
@@ -174,12 +174,12 @@ internal abstract class BRDCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 光阴神的礼赞凯歌
     /// </summary>
-    public static BaseAction WardensPaean { get; } = new(ActionID.WardensPaean, true, isTimeline: true);
+    public static BaseAction WardensPaean { get; } = new(ActionID.WardensPaean, true);
 
     /// <summary>
     /// 大地神的抒情恋歌
     /// </summary>
-    public static BaseAction NaturesMinne { get; } = new(ActionID.NaturesMinne, true, isTimeline: true);
+    public static BaseAction NaturesMinne { get; } = new(ActionID.NaturesMinne, true);
 
     /// <summary>
     /// 侧风诱导箭
@@ -205,7 +205,7 @@ internal abstract class BRDCombo_Base<TCmd> : CustomCombo<TCmd> where TCmd : Enu
     /// <summary>
     /// 行吟
     /// </summary>
-    public static BaseAction Troubadour { get; } = new(ActionID.Troubadour, true, isTimeline: true)
+    public static BaseAction Troubadour { get; } = new(ActionID.Troubadour, true)
     {
         ActionCheck = b => !Player.HasStatus(false, StatusID.Troubadour,
             StatusID.Tactician1,

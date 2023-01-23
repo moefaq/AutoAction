@@ -1,4 +1,4 @@
-﻿namespace XIVAutoAttack.Data
+﻿namespace AutoAction.Data
 {
     internal enum StatusID : ushort
     {
@@ -354,6 +354,12 @@
         TheSpear = 1885,
         TheEwer = 1886,
         TheSpire = 1887,
+
+
+        /// <summary>
+        /// 占卜
+        /// </summary>
+        Divination = 1878,
 
         /// <summary>
         /// 地星主宰
@@ -818,6 +824,11 @@
         TenChiJin = 1186,
 
         /// <summary>
+        /// 夺取
+        /// </summary>
+        Mug = 3183,
+
+        /// <summary>
         /// 极光
         /// </summary>
         Aurora = 1835,
@@ -1025,7 +1036,12 @@
         /// <summary>
         /// 鼓励
         /// </summary>
-        Embolden = 2282,
+        Embolden = 1239,
+
+        /// <summary>
+        /// 抗死
+        /// </summary>
+        MagickBarrier = 2707,
 
         /// 以太复制：防护
         /// </summary>

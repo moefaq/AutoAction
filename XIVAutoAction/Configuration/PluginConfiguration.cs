@@ -3,9 +3,9 @@ using Dalamud.Game.ClientState.Keys;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
-using XIVAutoAttack.Data;
+using AutoAction.Data;
 
-namespace XIVAutoAttack.Configuration;
+namespace AutoAction.Configuration;
 
 [Serializable]
 public class PluginConfiguration : IPluginConfiguration
@@ -55,6 +55,7 @@ public class PluginConfiguration : IPluginConfiguration
     public bool AttackMarkAOE { get; set; } = true;
     public bool FilterStopMark { get; set; } = true;
     public bool UseOverlayWindow { get; set; } = true;
+    public bool AutoOffWhenChangeMap { get; set; } = true;
     public bool TeachingMode { get; set; } = true;
     public Vector3 TeachingModeColor { get; set; } = new(0f, 1f, 0.8f);
     public Vector3 MovingTargetColor { get; set; } = new(0f, 1f, 0.8f);
@@ -65,7 +66,6 @@ public class PluginConfiguration : IPluginConfiguration
     public bool AutoStartCountdown { get; set; } = true;
     public bool AttackSafeMode { get; set; } = false;
     public bool UseHealWhenNotAHealer { get; set; } = true;
-    public float ObjectMinRadius { get; set; } = 0f;
     public float HealthDifference { get; set; } = 0.25f;
     public Dictionary<ClassJobID, float> HealingOfTimeSubtractSingles { get; set; } = new Dictionary<ClassJobID, float>();
 
@@ -86,8 +86,6 @@ public class PluginConfiguration : IPluginConfiguration
     public float InterruptibleTime { get; set; } = 0.5f;
     public float SpecialDuration { get; set; } = 3;
     public float WeaponInterval { get; set; } = 0.67f;
-    public float WeaponFaster { get; set; } = 0.08f;
-    public float WeaponDelay { get; set; } = 0;
     public string LocationWrongText { get; set; } = string.Empty;
     public string ScriptComboFolder { get; set; } = string.Empty;
 

@@ -1,14 +1,14 @@
 using Dalamud.Game.ClientState.JobGauge.Enums;
 using System.Collections.Generic;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Combos.Basic;
-using XIVAutoAttack.Combos.CustomCombo;
-using XIVAutoAttack.Configuration;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using static XIVAutoAttack.Combos.RangedPhysicial.BRDCombos.BRDCombo_Default;
+using AutoAction.Actions;
+using AutoAction.Combos.Basic;
+using AutoAction.Combos.CustomCombo;
+using AutoAction.Configuration;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using static AutoAction.Combos.RangedPhysicial.BRDCombos.BRDCombo_Default;
 
-namespace XIVAutoAttack.Combos.RangedPhysicial.BRDCombos;
+namespace AutoAction.Combos.RangedPhysicial.BRDCombos;
 
 internal sealed class BRDCombo_Default : BRDCombo_Base<CommandType>
 {
@@ -69,7 +69,7 @@ internal sealed class BRDCombo_Default : BRDCombo_Base<CommandType>
     {
         //伶牙俐齿
         if (IronJaws.ShouldUse(out act)) return true;
-        if (IronJaws.ShouldUse(out act, mustUse: true) && IronJaws.Target.WillStatusEnd(30, true, IronJaws.TargetStatus))
+        if (IronJaws.ShouldUse(out act, mustUse: true) && IronJaws.Target.WillStatusEnd(30, true, true, IronJaws.TargetStatus))
         {
             if (Player.HasStatus(true, StatusID.RagingStrikes) && Player.WillStatusEndGCD(1, 0, true, StatusID.RagingStrikes)) return true;
         }
@@ -234,7 +234,7 @@ internal sealed class BRDCombo_Default : BRDCombo_Base<CommandType>
         if (SoulVoice == 100 && BattleVoice.WillHaveOneCharge(25)) return false;
 
         //爆发快过了,如果手里还有绝峰箭,就把绝峰箭打出去
-        if (SoulVoice >= 80 && Player.HasStatus(true, StatusID.RagingStrikes) && Player.WillStatusEnd(10, false, StatusID.RagingStrikes)) return true;
+        if (SoulVoice >= 80 && Player.HasStatus(true, StatusID.RagingStrikes) && Player.WillStatusEnd(10, false, true, StatusID.RagingStrikes)) return true;
 
         //爆发期绝峰箭
         if (SoulVoice == 100 && Player.HasStatus(true, StatusID.RagingStrikes) && Player.HasStatus(true, StatusID.BattleVoice)) return true;

@@ -1,13 +1,13 @@
 ﻿using Dalamud.Game.ClientState.Objects.Types;
 using ImGuiNET;
 using System.Linq;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.SigReplacers;
-using XIVAutoAttack.Updaters;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.SigReplacers;
+using AutoAction.Updaters;
 
-namespace XIVAutoAttack.Windows.ComboConfigWindow;
+namespace AutoAction.Windows.ComboConfigWindow;
 #if DEBUG
 internal partial class ComboConfigWindow
 {
@@ -15,7 +15,7 @@ internal partial class ComboConfigWindow
     {
         var str = TargetUpdater.EncryptString(Service.ClientState.LocalPlayer);
         ImGui.SetNextItemWidth(ImGui.CalcTextSize(str).X + 10);
-        ImGui.InputText("你的HASH! 发给秋水萌新吧！", ref str, 100);
+        ImGui.InputText("神秘HASH，用来挂友碰头", ref str, 100);
 
         ImGui.Text("Hostile: " + TargetUpdater.HostileTargets.Count().ToString());
         ImGui.Text("Friends: " + TargetUpdater.PartyMembers.Count().ToString());

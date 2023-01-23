@@ -4,17 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Actions.BaseAction;
-using XIVAutoAttack.Actions.BaseCraftAction;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Localization;
-using XIVAutoAttack.SigReplacers;
-using XIVAutoAttack.Updaters;
-using XIVAutoAttack.Windows;
+using AutoAction.Actions;
+using AutoAction.Actions.BaseAction;
+using AutoAction.Actions.BaseCraftAction;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Localization;
+using AutoAction.SigReplacers;
+using AutoAction.Updaters;
+using AutoAction.Windows;
 
-namespace XIVAutoAttack
+namespace AutoAction
 {
     internal static class CommandController
     {
@@ -300,11 +300,13 @@ namespace XIVAutoAttack
         internal static void UpdateAutoAttack()
         {
             //结束战斗，那就关闭。
-            if (Service.ClientState.LocalPlayer.CurrentHp == 0
+            if (
+                Service.ClientState.LocalPlayer.CurrentHp == 0
                 || Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.LoggingOut]
                 || Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.OccupiedInCutSceneEvent]
-                || Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.BetweenAreas]
-                || Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.BetweenAreas51])
+                || (Service.Configuration.AutoOffWhenChangeMap && (Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.BetweenAreas] 
+                || Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.BetweenAreas51]))
+                )
                 AttackCancel();
 
             //Auto start at count Down.
@@ -436,7 +438,7 @@ namespace XIVAutoAttack
                                 foreach (var iAct in IconReplacer.RightComboBaseActions)
                                 {
                                     if (iAct is not BaseAction act) continue;
-                                    if (!act.IsTimeline) continue;
+                                    //if (!act.IsTimeline) continue;
 
                                     if (actName == act.Name)
                                     {
@@ -470,7 +472,7 @@ namespace XIVAutoAttack
 
                     Service.ChatGui.PrintError(LocalizationManager.RightLang.Commands_CannotFind + ": " + str);
                     Service.ChatGui.PrintError(LocalizationManager.RightLang.Commands_OpenSettings);
-                    XIVAutoAttackPlugin.OpenConfigWindow();
+                    AutoActionPlugin.OpenConfigWindow();
                     return;
             }
         }

@@ -2,11 +2,11 @@
 using ImGuiNET;
 using System;
 using System.Numerics;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Localization;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Localization;
 
-namespace XIVAutoAttack.Windows.ComboConfigWindow;
+namespace AutoAction.Windows.ComboConfigWindow;
 
 internal partial class ComboConfigWindow
 {
@@ -40,22 +40,26 @@ internal partial class ComboConfigWindow
                 ImGui.SetTooltip(LocalizationManager.RightLang.Configwindow_Params_UseOverlayWindowDesc);
             }
 
+            bool autoOffWhenChangeMap = Service.Configuration.AutoOffWhenChangeMap;
+            if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_AutoOffWhenChangeMap, ref autoOffWhenChangeMap))
+            {
+                Service.Configuration.AutoOffWhenChangeMap = autoOffWhenChangeMap;
+                Service.Configuration.Save();
+            }
+            if (ImGui.IsItemHovered())
+            {
+                ImGui.SetTooltip(LocalizationManager.RightLang.Configwindow_Params_AutoOffWhenChangeMapDesc);
+            }
+
             if (ImGui.CollapsingHeader(LocalizationManager.RightLang.Configwindow_Params_BasicSettings))
             {
 
-                float weaponDelay = Service.Configuration.WeaponDelay;
-                ImGui.SetNextItemWidth(DRAG_NUMBER_WIDTH);
-                if (ImGui.DragFloat(LocalizationManager.RightLang.Configwindow_Params_WeaponDelay, ref weaponDelay, 0.002f, 0, 1))
+                if (ImGui.Button(LocalizationManager.RightLang.Configwindow_Params_RestoreDefault))
                 {
-                    Service.Configuration.WeaponDelay = weaponDelay;
-                    Service.Configuration.Save();
-                }
-
-                float weaponFaster = Service.Configuration.WeaponFaster;
-                ImGui.SetNextItemWidth(DRAG_NUMBER_WIDTH);
-                if (ImGui.DragFloat(LocalizationManager.RightLang.Configwindow_Params_WeaponFaster, ref weaponFaster, 0.002f, 0, 0.1f))
-                {
-                    Service.Configuration.WeaponFaster = weaponFaster;
+                    Service.Configuration.WeaponInterval = 0.67f;
+                    Service.Configuration.SpecialDuration = 3;
+                    Service.Configuration.InterruptibleTime = 0.5f;
+                    Service.Configuration.AddDotGCDCount = 2;
                     Service.Configuration.Save();
                 }
 
@@ -85,7 +89,7 @@ internal partial class ComboConfigWindow
 
                 int addDotGCDCount = Service.Configuration.AddDotGCDCount;
                 ImGui.SetNextItemWidth(DRAG_NUMBER_WIDTH);
-                if (ImGui.DragInt(LocalizationManager.RightLang.Configwindow_Params_AddDotGCDCount, ref addDotGCDCount, 0.2f, 0, 3))
+                if (ImGui.DragInt(LocalizationManager.RightLang.Configwindow_Params_AddDotGCDCount, ref addDotGCDCount, 0.1f, 1, 3))
                 {
                     Service.Configuration.AddDotGCDCount = addDotGCDCount;
                     Service.Configuration.Save();
@@ -417,6 +421,16 @@ internal partial class ComboConfigWindow
 
             if (ImGui.CollapsingHeader(LocalizationManager.RightLang.Configwindow_Params_Conditons))
             {
+                if (ImGui.Button(LocalizationManager.RightLang.Configwindow_Params_RestoreDefault))
+                {
+                    Service.Configuration.HealthDifference = 0.25f;
+                    Service.Configuration.HealthAreaAbility = 0.75f;
+                    Service.Configuration.HealthAreafSpell = 0.65f;
+                    Service.Configuration.HealthSingleAbility = 0.7f;
+                    Service.Configuration.HealthSingleSpell = 0.55f;
+                    Service.Configuration.Save();
+                }
+
                 bool autoStartCountdown = Service.Configuration.AutoStartCountdown;
                 if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_AutoStartCountdown, ref autoStartCountdown))
                 {
@@ -470,16 +484,6 @@ internal partial class ComboConfigWindow
 
             if (ImGui.CollapsingHeader(LocalizationManager.RightLang.Configwindow_Params_Targets))
             {
-                float minradius = Service.Configuration.ObjectMinRadius;
-                ImGui.SetNextItemWidth(DRAG_NUMBER_WIDTH);
-                if (ImGui.DragFloat(LocalizationManager.RightLang.Configwindow_Params_ObjectMinRadius, ref minradius, 0.02f, 0, 10))
-                {
-                    Service.Configuration.ObjectMinRadius = minradius;
-                    Service.Configuration.Save();
-                }
-
-
-
                 bool addEnemyListToHostile = Service.Configuration.AddEnemyListToHostile;
                 if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_AddEnemyListToHostile, ref addEnemyListToHostile))
                 {

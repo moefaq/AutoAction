@@ -2,19 +2,18 @@ using Dalamud.Game.Command;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin;
 using System;
-using XIVAutoAttack.Combos.Script;
-using XIVAutoAttack.Configuration;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Localization;
-using XIVAutoAttack.SigReplacers;
-using XIVAutoAttack.Updaters;
-using XIVAutoAttack.Windows;
-using XIVAutoAttack.Windows.ComboConfigWindow;
-using XivCommon;
+using AutoAction.Combos.Script;
+using AutoAction.Configuration;
+using AutoAction.Data;
+using AutoAction.Localization;
+using AutoAction.SigReplacers;
+using AutoAction.Updaters;
+using AutoAction.Windows;
+using AutoAction.Windows.ComboConfigWindow;
 
-namespace XIVAutoAttack;
+namespace AutoAction;
 
-public sealed class XIVAutoAttackPlugin : IDalamudPlugin, IDisposable
+public sealed class AutoActionPlugin : IDalamudPlugin, IDisposable
 {
     private const string _command = "/pattack";
 
@@ -25,8 +24,8 @@ public sealed class XIVAutoAttackPlugin : IDalamudPlugin, IDisposable
     private static ComboConfigWindow _comboConfigWindow;
     internal static ScriptComboWindow _scriptComboWindow;
     public string Name => "AutoAction";
-    public static XivCommonBase XivCommon;
-    public XIVAutoAttackPlugin(DalamudPluginInterface pluginInterface)
+
+    public AutoActionPlugin(DalamudPluginInterface pluginInterface)
     {
         pluginInterface.Create<Service>();
         Service.Configuration = pluginInterface.GetPluginConfig() as PluginConfiguration ?? new PluginConfiguration();
@@ -34,7 +33,7 @@ public sealed class XIVAutoAttackPlugin : IDalamudPlugin, IDisposable
         Service.Address.Setup();
 
         Service.IconReplacer = new IconReplacer();
-        XivCommon = new XivCommonBase();
+
         _comboConfigWindow = new();
         _scriptComboWindow = new();
         windowSystem = new WindowSystem(Name);

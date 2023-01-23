@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using XIVAutoAttack.Actions;
-using XIVAutoAttack.Combos.Basic;
-using XIVAutoAttack.Configuration;
-using XIVAutoAttack.Data;
-using XIVAutoAttack.Helpers;
-using XIVAutoAttack.Updaters;
-using static XIVAutoAttack.Combos.RangedMagicial.BLUCombos.BLUCombo_Default;
+using AutoAction.Actions;
+using AutoAction.Combos.Basic;
+using AutoAction.Configuration;
+using AutoAction.Data;
+using AutoAction.Helpers;
+using AutoAction.Updaters;
+using static AutoAction.Combos.RangedMagicial.BLUCombos.BLUCombo_Default;
 
-namespace XIVAutoAttack.Combos.RangedMagicial.BLUCombos
+namespace AutoAction.Combos.RangedMagicial.BLUCombos
 {
     internal sealed class BLUCombo_Default : BLUCombo_Base<CommandType>
     {
@@ -93,7 +93,7 @@ namespace XIVAutoAttack.Combos.RangedMagicial.BLUCombos
             //鬼宿脚
             if (PhantomFlurry.IsCoolDown && !PhantomFlurry.ElapsedAfter(1) || Player.HasStatus(true, StatusID.PhantomFlurry))
             {
-                if (!Player.WillStatusEnd(0.1f, true, StatusID.PhantomFlurry) && Player.WillStatusEnd(1, true, StatusID.PhantomFlurry) && PhantomFlurry2.ShouldUse(out act, mustUse: true)) return true;
+                if (!Player.WillStatusEnd(0.1f, true, true, StatusID.PhantomFlurry) && Player.WillStatusEnd(1, true, true, StatusID.PhantomFlurry) && PhantomFlurry2.ShouldUse(out act, mustUse: true)) return true;
                 return false;
             }
             //穿甲散弹
