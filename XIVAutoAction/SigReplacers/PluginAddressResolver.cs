@@ -34,7 +34,9 @@ internal class PluginAddressResolver : BaseAddressResolver
         //Static
         ComboTimer = scanner.GetStaticAddressFromSig("F3 0F 11 05 ?? ?? ?? ?? F3 0F 10 45 ?? E8");
         MarkingController = scanner.GetStaticAddressFromSig("48 8d 0d ?? ?? ?? ?? e8 ?? ?? ?? ?? 48 3b c3 75 ?? ff c7 3b fe");
-        playerStaticAddress = scanner.GetStaticAddressFromSig("48 8D 0D ? ? ? ? E8 ? ? ? ? 84 C0 75 06 F6 43 18 02 "); //Artisan
+        //playerStaticAddress = scanner.GetStaticAddressFromSig("48 8D 0D ? ? ? ? E8 ? ? ? ? 84 C0 75 06 F6 43 18 02 "); //Artisan int
+
+        playerStaticAddress = scanner.GetStaticAddressFromSig("8B D7 48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 0F B7 E8"); //Artisan cn
 
         //Function
         IsActionIdReplaceable = scanner.ScanText("E8 ?? ?? ?? ?? 84 C0 74 4C 8B D3");

@@ -9,6 +9,15 @@ internal partial class ComboConfigWindow
 {
     private void DrawEvent()
     {
+        bool EventsEnabled = Service.Configuration.EnableEvents;
+        if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Events_EnableEvent,
+            ref EventsEnabled))
+        {
+            Service.Configuration.EnableEvents = EventsEnabled;
+            Service.Configuration.Save();
+        }
+        ImGui.SameLine();
+        Spacing();
         if (ImGui.Button(LocalizationManager.RightLang.Configwindow_Events_AddEvent))
         {
             Service.Configuration.Events.Add(new ActionEventInfo());

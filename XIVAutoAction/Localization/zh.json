@@ -44,6 +44,7 @@
   "Configwindow_AttackItem_ScriptFolderError": "请设定一个路径以正常使用自定义循环！",
   "Configwindow_AttackItem_KeyName": "关键名称为",
   "Configwindow_AttackItem_Loop": "已启用",
+  "Configwindow_Events_EnableEvent": "启用事件",
   "Configwindow_Events_AddEvent": "添加事件",
   "Configwindow_Events_Description": "在这个窗口，你可以设定释放特定技能后自动触发哪个宏。",
   "Configwindow_Events_ActionName": "技能名称",

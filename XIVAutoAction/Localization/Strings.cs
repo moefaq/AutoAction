@@ -85,6 +85,7 @@ internal class Strings
     public string Configwindow_AttackItem_ScriptFolderError { get; set; } = "Please set a storage path to use the custom loop properly!";
     public string Configwindow_AttackItem_KeyName { get; set; } = "The key name is";
     public string Configwindow_AttackItem_Loop { get; set; } = "Enable";
+    public string Configwindow_Events_EnableEvent { get; set; } = "Enable Events";
     public string Configwindow_Events_AddEvent { get; set; } = "AddEvents";
     public string Configwindow_Events_Description { get; set; } = "In this window, you can set what macro will be trigger after using an action.";
     public string Configwindow_Events_ActionName { get; set; } = "Action Name";

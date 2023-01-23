@@ -103,21 +103,26 @@ namespace AutoAction.SigReplacers
             _actions.Enqueue(new ActionRec(_timeLastActionUsed, action));
 
             //Macro
-            foreach (var item in Service.Configuration.Events)
+            if(Service.Configuration.EnableEvents)
             {
-                if (item.Name != action.Name) continue;
-                // 先判断是否开启
-                if (!item.IsEnable) break;
-                // 再判断命令是否为空，且开启了命令执行
-                if (item.macroString != ""&&!item.noCmd)
+                Service.ChatGui.Print("当前目标"+tar.Name);
+                foreach (var item in Service.Configuration.Events)
                 {
-                    XIVAutoAttackPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                    if (item.Name != action.Name) continue;
+                    // 先判断是否开启
+                    if (!item.IsEnable) break;
+                    // 再判断命令是否为空，且开启了命令执行
+                    if (item.macroString != "" && !item.noCmd)
+                    {
+                        AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                    }
+                    // 再执行宏
+                    if (item.MacroIndex < 0 || item.MacroIndex > 99 || item.noMacro) break;
+                    MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
+                        RaptureMacroModule.Instance->Individual[item.MacroIndex]));
                 }
-                // 再执行宏
-                if (item.MacroIndex < 0 || item.MacroIndex > 99 ||item.noMacro) break;
-                MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
-                    RaptureMacroModule.Instance->Individual[item.MacroIndex]));
             }
+            
 
 #if DEBUG
             if (flag != 0) Service.ChatGui.Print($"{action.Name}, {flag}");
