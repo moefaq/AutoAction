@@ -4,6 +4,7 @@ using AutoAction.Configuration;
 using AutoAction.Localization;
 using System.Linq;
 using Dalamud.Logging;
+using System.Xml.Linq;
 
 namespace AutoAction.Windows.ComboConfigWindow;
 
@@ -144,12 +145,28 @@ internal partial class ComboConfigWindow
             // 加载带有类型的事件
             try
             {
-
                 for (int i = 0; i < Service.Configuration.EventTypes.Count(); i++)
                 {
                     // 折叠分隔
                     if (ImGui.CollapsingHeader(Service.Configuration.EventTypes[i].TypeName))
                     {
+                        string TypeName = Service.Configuration.EventTypes[i].TypeName;
+                        if (ImGui.InputText($"{LocalizationManager.RightLang.Configwindow_Events_RenameType}##Rename{i}",
+                                ref TypeName, 50))
+                        {
+                            Service.Configuration.EventTypes[i].RenameType(TypeName);
+                            Service.Configuration.Save();
+                        }
+                        bool isTypeEnabled = Service.Configuration.EventTypes[i].EnableType;
+                        // 是否启用
+                        if (ImGui.Checkbox($"{LocalizationManager.RightLang.Configwindow_Events_EnableMacro}##EnableType{i}",
+                            ref isTypeEnabled))
+                        {
+                            Service.Configuration.EventTypes[i].EnableType = isTypeEnabled;
+                            Service.Configuration.Save();
+                        }
+                        ImGui.SameLine();
+                        Spacing();
                         // 添加带有类型的事件
                         if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_AddEvent}##AddEventByType{i}"))
                         {
@@ -158,7 +175,7 @@ internal partial class ComboConfigWindow
                         }
                         ImGui.SameLine();
                         Spacing();
-                        if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_RemoveEvent}##RemoveType{i}"))
+                        if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_DelType}##RemoveType{i}"))
                         {
                             Service.Configuration.EventTypes.RemoveAt(i);
                             Service.Configuration.Save();
