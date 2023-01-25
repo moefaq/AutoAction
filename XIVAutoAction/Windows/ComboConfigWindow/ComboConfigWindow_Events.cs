@@ -21,6 +21,7 @@ internal partial class ComboConfigWindow
         if (ImGui.Button(LocalizationManager.RightLang.Configwindow_Events_AddEvent))
         {
             Service.Configuration.Events.Add(new ActionEventInfo());
+            Service.Configuration.Save();
         }
         ImGui.SameLine();
         Spacing();
@@ -47,6 +48,7 @@ internal partial class ComboConfigWindow
                     ref macroindex, 1, 0, 99))
                 {
                     Service.Configuration.Events[i].MacroIndex = macroindex;
+                    Service.Configuration.Save();
                 }
                 string macroString = Service.Configuration.Events[i].macroString;
                 if (ImGui.InputText($"{LocalizationManager.RightLang.Configwindow_Events_MacroString}##MacroString{i}",
@@ -94,6 +96,7 @@ internal partial class ComboConfigWindow
                 if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_RemoveEvent}##RemoveEvent{i}"))
                 {
                     Service.Configuration.Events.RemoveAt(i);
+                    Service.Configuration.Save();
                 }
                 ImGui.Separator();
             }
