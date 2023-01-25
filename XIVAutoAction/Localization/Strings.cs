@@ -86,9 +86,12 @@ internal class Strings
     public string Configwindow_AttackItem_KeyName { get; set; } = "The key name is";
     public string Configwindow_AttackItem_Loop { get; set; } = "Enable";
     public string Configwindow_Events_EnableEvent { get; set; } = "Enable Events";
-    public string Configwindow_Events_AddEvent { get; set; } = "AddEvents";
+    public string Configwindow_Events_AddEvent { get; set; } = "Add Events";
+    public string Configwindow_Events_AddType { get; set; } = "Add Type/Add Event";
+    public string Configwindow_Events_SaveType { get; set; } = "Save Type";
     public string Configwindow_Events_Description { get; set; } = "In this window, you can set what macro will be trigger after using an action.";
     public string Configwindow_Events_ActionName { get; set; } = "Action Name";
+    public string Configwindow_Events_ActionType { get; set; } = "Action Type";
     public string Configwindow_Events_MacroIndex { get; set; } = "Macro No.";
     public string Configwindow_Events_NoMacro { get; set; } = "Skip macro";
     public string Configwindow_Events_NoCmd { get; set; } = "Skip cmd";

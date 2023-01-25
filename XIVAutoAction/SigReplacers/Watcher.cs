@@ -17,6 +17,7 @@ using AutoAction.Helpers;
 using AutoAction.Localization;
 using AutoAction.Updaters;
 using Action = Lumina.Excel.GeneratedSheets.Action;
+using System.Text.RegularExpressions;
 
 namespace AutoAction.SigReplacers
 {
@@ -111,26 +112,21 @@ namespace AutoAction.SigReplacers
                     // 第一步，判断item是否被开启
                     if (item.IsEnable)
                     {
-                        // 第二步，以|为分隔符拆分字符串，当字符串中没有|时，相当于没有拆分
-                        string[] names = item.Name.Split('|');
-                        foreach (string name in names)
+                        // 第二步，正则匹配，感谢default对于此段代码的改进
+                        if(new Regex(item.Name).Match(action.Name).Success)
                         {
-                            // 如果拆分后的字符串等于当前使用技能
-                            if (name == action.Name)
+                            // 判断（命令不为空&&开启了命令执行）
+                            if (item.macroString != "" && !item.noCmd)
                             {
-                                // 判断（命令不为空&&开启了命令执行）
-                                if (item.macroString != "" && !item.noCmd)
-                                {
-                                    // 使用xivcommon执行命令，dalamud自带的发不了聊天栏
-                                    AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
-                                }
+                                // 使用xivcommon执行命令，dalamud自带的发不了聊天栏
+                                AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                            }
 
-                                // 判断（宏的数字有效&&）执行宏
-                                if (item.MacroIndex >= 0 && item.MacroIndex <= 99 && !item.noMacro)
-                                {
-                                    MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
-                                    RaptureMacroModule.Instance->Individual[item.MacroIndex]));
-                                }
+                            // 判断（宏的数字有效&&）执行宏
+                            if (item.MacroIndex >= 0 && item.MacroIndex <= 99 && !item.noMacro)
+                            {
+                                MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
+                                RaptureMacroModule.Instance->Individual[item.MacroIndex]));
                             }
                         }
                     }
