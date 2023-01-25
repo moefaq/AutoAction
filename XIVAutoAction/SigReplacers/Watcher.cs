@@ -126,7 +126,7 @@ namespace AutoAction.SigReplacers
                                 }
 
                                 // 判断（宏的数字有效&&）执行宏
-                                if (item.MacroIndex > 0 && item.MacroIndex < 99 && !item.noMacro)
+                                if (item.MacroIndex >= 0 && item.MacroIndex <= 99 && !item.noMacro)
                                 {
                                     MacroUpdater.Macros.Enqueue(new MacroItem(tar, item.IsShared ? RaptureMacroModule.Instance->Shared[item.MacroIndex] :
                                     RaptureMacroModule.Instance->Individual[item.MacroIndex]));
