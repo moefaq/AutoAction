@@ -10,6 +10,7 @@ using AutoAction.SigReplacers;
 using AutoAction.Updaters;
 using AutoAction.Windows;
 using AutoAction.Windows.ComboConfigWindow;
+using XivCommon;
 
 namespace AutoAction;
 
@@ -24,7 +25,7 @@ public sealed class AutoActionPlugin : IDalamudPlugin, IDisposable
     private static ComboConfigWindow _comboConfigWindow;
     internal static ScriptComboWindow _scriptComboWindow;
     public string Name => "AutoAction";
-
+    public static XivCommonBase XivCommon;
     public AutoActionPlugin(DalamudPluginInterface pluginInterface)
     {
         pluginInterface.Create<Service>();
@@ -33,7 +34,7 @@ public sealed class AutoActionPlugin : IDalamudPlugin, IDisposable
         Service.Address.Setup();
 
         Service.IconReplacer = new IconReplacer();
-
+        XivCommon = new XivCommonBase();
         _comboConfigWindow = new();
         _scriptComboWindow = new();
         windowSystem = new WindowSystem(Name);
@@ -91,7 +92,7 @@ public sealed class AutoActionPlugin : IDalamudPlugin, IDisposable
         Service.IconReplacer.Dispose();
 
         Service.Localization.Dispose();
-
+        XivCommon.Dispose();
         MajorUpdater.Dispose();
         Watcher.Dispose();
         CountDown.Dispose();

@@ -92,6 +92,7 @@ public class PluginConfiguration : IPluginConfiguration
     public int MoveTargetAngle { get; set; } = 24;
     public List<TargetingType> TargetingTypes { get; set; } = new List<TargetingType>();
     public int TargetingIndex { get; set; } = 0;
+    public bool EnableEvents { get; set; } = true;
     public void Save()
     {
         Service.Interface.SavePluginConfig(this);
