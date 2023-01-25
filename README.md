@@ -1,4 +1,3 @@
-
 # AutoAction
 
 [![Github Latest Releases](https://img.shields.io/github/downloads/moewcorp/AutoAction/latest/total.svg?label=最新版本下载量&style=for-the-badge)]()
@@ -16,47 +15,23 @@
 - 如果今后维护的有做的不符合原作者预期了，也和原作者没有任何关系，原作者不承担任何责任与义务，望周知。
 - 再次声明本仓库**不是AutoAction**原作者唯一指定的后续维护开发仓库!
 
-**Discord and Crowdin are no longer used !**
-
-There is no discord yet. But the [Discussions](https://github.com/moewcorp/AutoAction/discussions) is open.
-
-~~Talk about it on [Discord](https://discord.gg/nfzmJ6ujDP) For Player not in Chinese Server.~~
-
-~~Translation is on [Crowdin](https://crowdin.com/project/xivautoattack)~~
-
-Repo url for global server player:
-
- `https://raw.githubusercontent.com/moewcorp/AutoAction/main/pluginmaster.json`
-
-中国服仓库链接: 
+仓库链接: 
 
 `https://raw.githubusercontent.com/moewcorp/AutoAction/main/pluginmaster_CN.json`
 
-## Localization 本地化
-
-Want to localize this plugin？
-
-Since crowdin is no longer used, plz PR to the json files in [Localization](https://github.com/moewcorp/AutoAction/tree/main/XIVAutoAction/Localization) directly now.
-
-[German](https://github.com/moewcorp/AutoAction/blob/main/XIVAutoAction/Localization/de.json) | [Spanish](https://github.com/moewcorp/AutoAction/blob/main/XIVAutoAction/Localization/es.json) | [French](https://github.com/moewcorp/AutoAction/blob/main/XIVAutoAction/Localization/fr.json) | [Japanese](https://github.com/moewcorp/AutoAction/blob/main/XIVAutoAction/Localization/ja.json) | [Chinese](https://github.com/moewcorp/AutoAction/blob/main/XIVAutoAction/Localization/zh.json)
-
-## Overview 插件概况
-
-This plugin provides full-class PVE automatic attack, can automatically find the optimal target, and provides opener teaching mode.
+## 插件概况
 
 本插件提供全职业的PVE的自动攻击，可以自动找最优目标，并提供循环教育模式。
 
 ![案例](gifs/ExampleDNC.gif)
 
-### Target User  适用人群
+### 适用人群
 - 不想自己打循环，但是想要`体验副本机制`的玩家。
   - 日常刷日随、幻化的玩家
   - 每周清个CD摸摸鱼的玩家
 - 想要如何`学习循环`的玩家
   - 刚刚接手一个职业不会玩，想了解怎么打
   - 练习循环看攻略麻烦，想要哪儿亮了点哪里的玩家
-
-
 
 ## 致谢
 

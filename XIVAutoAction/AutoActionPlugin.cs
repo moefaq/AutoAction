@@ -51,9 +51,6 @@ public sealed class AutoActionPlugin : IDalamudPlugin, IDisposable
 
 
         Service.Localization = new LocalizationManager();
-#if DEBUG
-        Service.Localization.ExportLocalization();
-#endif
 
         ChangeWindowHeader();
     }

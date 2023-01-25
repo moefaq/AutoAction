@@ -310,7 +310,7 @@ namespace AutoAction
                 AttackCancel();
 
             //Auto start at count Down.
-            else if (Service.Configuration.AutoStartCountdown && CountDown.CountDownTime > 0)
+            else if (Service.Configuration.AutoStartCountdown && CountDown.CountDownTime >= 5)
             {
                 if (!AutoAttack) StartAttackSmart();
             }
