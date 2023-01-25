@@ -48,18 +48,6 @@ internal class LocalizationManager : IDisposable
         AutoActionPlugin.ChangeWindowHeader();
     }
 
-#if DEBUG
-    public void ExportLocalization()
-    {
-        var directory = @"E:\AutoAction\XIVAutoAction\Localization";
-        if (!Directory.Exists(directory)) return;
-
-        //Default values.
-        var path = Path.Combine(directory, "Localization.json");
-        File.WriteAllText(path, JsonConvert.SerializeObject(new Strings(), Formatting.Indented));
-    }
-#endif
-
     public void Dispose()
     {
         Service.Interface.LanguageChanged -= OnLanguageChange;
