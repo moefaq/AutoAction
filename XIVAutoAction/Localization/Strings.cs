@@ -92,6 +92,8 @@ internal class Strings
     public string Configwindow_Events_RenameType { get; set; } = "Rename Type";
     public string Configwindow_Events_RenameAll { get; set; } = "Rename All";
     public string Configwindow_Events_DelType { get; set; } = "Delete Type";
+    public string Configwindow_Events_ExportType { get; set; } = "Export";
+    public string Configwindow_Events_ImportType { get; set; } = "Import";
     public string Configwindow_Events_SaveType { get; set; } = "Save Type";
     public string Configwindow_Events_Description { get; set; } = "In this window, you can set what macro will be trigger after using an action.";
     public string Configwindow_Events_ActionName { get; set; } = "Action Name";

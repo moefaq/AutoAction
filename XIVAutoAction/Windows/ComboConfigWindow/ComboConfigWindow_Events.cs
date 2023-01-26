@@ -2,13 +2,17 @@
 using AutoAction.Localization;
 using Dalamud.Logging;
 using ImGuiNET;
+using Lumina.Excel.GeneratedSheets;
 using System.Linq;
 using System.Numerics;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace AutoAction.Windows.ComboConfigWindow;
 
 internal partial class ComboConfigWindow
 {
+    // 统计字符串行数
     static int SubstringCount(string str, string substring)
     {
         if (str.Contains(substring))
@@ -22,6 +26,7 @@ internal partial class ComboConfigWindow
     private void DrawEvent()
     {
         bool EventsEnabled = Service.Configuration.EnableEvents;
+        JsonSerializerOptions JSOption = new JsonSerializerOptions { WriteIndented = true };
         if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Events_EnableEvent,
             ref EventsEnabled))
         {
@@ -43,15 +48,39 @@ internal partial class ComboConfigWindow
             Service.Configuration.EventTypes.Add(new ActionEventType());
             Service.Configuration.Save();
         }
+        ImGui.SameLine();
+        Spacing();
+        // 导入功能
+        if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_ImportType}##ImportType"))
+        {
+            string clipboard = ImGui.GetClipboardText();
+            ActionEventType importType = JsonSerializer.Deserialize<ActionEventType>(clipboard);
+            bool isExistSameType = false;
+            // 判断，导入的名称是否已存在
+            foreach (var item in Service.Configuration.EventTypes)
+            {
+                // 如果存在同名类型，则添加
+                if (item.TypeName == importType.TypeName)
+                {
+                    item.Events.AddRange(importType.Events);
+                    isExistSameType = true;
+                }
+            }
+            if (!isExistSameType)
+            {
+                Service.Configuration.EventTypes.Add(importType);
+            }
+            Service.Configuration.Save();
+        }
         ImGui.Separator();
         ImGui.Text(LocalizationManager.RightLang.Configwindow_Events_Description);
 
         ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, new Vector2(0f, 5f));
 
-
+        // 绘制事件ui
         if (ImGui.BeginChild("Events List", new Vector2(0f, -1f), true))
         {
-
+            // 以下是没有类型的事件
             for (int i = 0; i < Service.Configuration.Events.Count(); i++)
             {
                 string name = Service.Configuration.Events[i].Name;
@@ -159,10 +188,16 @@ internal partial class ComboConfigWindow
                     // 折叠分隔
                     if (ImGui.CollapsingHeader(Service.Configuration.EventTypes[i].TypeName))
                     {
+                        // 重命名功能逻辑：重命名之后，和现有类型名称相同，则合并events，和现有名称不同，则新建类型
                         string TypeName = Service.Configuration.EventTypes[i].TypeName;
                         if (ImGui.InputText($"{LocalizationManager.RightLang.Configwindow_Events_RenameType}##Rename{i}",
                                 ref TypeName, 50, ImGuiInputTextFlags.EnterReturnsTrue))
                         {
+                            // 合并Events
+                            foreach(var item in Service.Configuration.EventTypes.Where(item=>item.TypeName==TypeName))
+                            {
+                                item.Events.AddRange(Service.Configuration.EventTypes[i].Events);
+                            }
                             Service.Configuration.EventTypes[i].TypeName = TypeName;
                             Service.Configuration.Save();
                         }
@@ -196,6 +231,13 @@ internal partial class ComboConfigWindow
                         {
                             Service.Configuration.EventTypes.RemoveAt(i);
                             Service.Configuration.Save();
+                        }
+                        ImGui.SameLine();
+                        Spacing();
+                        // 导出功能
+                        if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_ExportType}##ExportType{i}"))
+                        {
+                            ImGui.SetClipboardText(Regex.Unescape((JsonSerializer.Serialize(Service.Configuration.EventTypes[i], JSOption))));
                         }
                         ImGui.Separator();
                         // 列出分类的事件

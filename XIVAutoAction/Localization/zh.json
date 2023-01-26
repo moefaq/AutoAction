@@ -50,6 +50,8 @@
   "Configwindow_Events_ChangeType": "更改类型",
   "Configwindow_Events_DelType": "删除类型",
   "Configwindow_Events_RenameType": "重命名",
+  "Configwindow_Events_ExportType": "导出",
+  "Configwindow_Events_ImportType": "从剪切板导入",
   "Configwindow_Events_Description": "在这个窗口，你可以设定释放特定技能后自动触发的宏或命令。\n可以直接输入多个技能，例如“赤复活，复活，复生”\n使用<tar>指代技能选中的目标，使用<t>指代玩家选中的目标\n例如“/p <me>已复活<tar>”",
   "Configwindow_Events_ActionName": "技能名称",
   "Configwindow_Events_ActionType": "事件类型",
