@@ -119,7 +119,11 @@ namespace AutoAction.SigReplacers
                             if (item.macroString != "" && !item.noCmd)
                             {
                                 // 使用xivcommon执行命令，dalamud自带的发不了聊天栏
-                                AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                                // 执行多行命令
+                                foreach(string Line in item.MacroToString(tar.Name.ToString()).Split('\n'))
+                                {
+                                    AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(Line);
+                                }
                             }
 
                             // 判断（宏的数字有效&&）执行宏
@@ -148,7 +152,11 @@ namespace AutoAction.SigReplacers
                                     if (item.macroString != "" && !item.noCmd)
                                     {
                                         // 使用xivcommon执行命令，dalamud自带的发不了聊天栏
-                                        AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(item.macroString);
+                                        // 执行多行命令
+                                        foreach (string Line in item.MacroToString(tar.Name.ToString()).Split('\n'))
+                                        {
+                                            AutoActionPlugin.XivCommon.Functions.Chat.SendMessage(Line);
+                                        }
                                     }
 
                                     // 判断（宏的数字有效&&）执行宏

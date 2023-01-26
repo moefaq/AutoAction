@@ -32,5 +32,14 @@
             macroString = "";
             Type = type;
         }
+        public string MacroToString(string targetName)
+        {
+            // 将target插入到MacroString中
+            return macroString.Replace("<tar>",targetName);
+        }
+        public string[] MacroStringLines()
+        {
+            return macroString.Split("\n");
+        }
     }
 }

@@ -1,15 +1,24 @@
-﻿using ImGuiNET;
-using System.Numerics;
-using AutoAction.Configuration;
+﻿using AutoAction.Configuration;
 using AutoAction.Localization;
-using System.Linq;
 using Dalamud.Logging;
-using System.Xml.Linq;
+using ImGuiNET;
+using System.Linq;
+using System.Numerics;
 
 namespace AutoAction.Windows.ComboConfigWindow;
 
 internal partial class ComboConfigWindow
 {
+    static int SubstringCount(string str, string substring)
+    {
+        if (str.Contains(substring))
+        {
+            string strReplaced = str.Replace(substring, "");
+            return (str.Length - strReplaced.Length) / substring.Length;
+        }
+
+        return 0;
+    }
     private void DrawEvent()
     {
         bool EventsEnabled = Service.Configuration.EnableEvents;
@@ -34,8 +43,7 @@ internal partial class ComboConfigWindow
             Service.Configuration.EventTypes.Add(new ActionEventType());
             Service.Configuration.Save();
         }
-        ImGui.SameLine();
-        Spacing();
+        ImGui.Separator();
         ImGui.Text(LocalizationManager.RightLang.Configwindow_Events_Description);
 
         ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, new Vector2(0f, 5f));
@@ -62,7 +70,7 @@ internal partial class ComboConfigWindow
                 }
                 ImGui.SameLine();
                 Spacing();
-                if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_AddType}##AddType{i}"))
+                if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_ChangeType}##ChangeType{i}"))
                 {
                     // 加载在这里的事件本来没有Type，当输入文字之后，需要保存Type
                     // 确认输入的Type是不是在当前已有的Type里
@@ -90,9 +98,10 @@ internal partial class ComboConfigWindow
                     Service.Configuration.Events[i].MacroIndex = macroindex;
                     Service.Configuration.Save();
                 }
+                // 输入框的高度有点讲究
                 string macroString = Service.Configuration.Events[i].macroString;
-                if (ImGui.InputText($"{LocalizationManager.RightLang.Configwindow_Events_MacroString}##MacroString{i}",
-                    ref macroString, 200))
+                if (ImGui.InputTextMultiline($"{LocalizationManager.RightLang.Configwindow_Events_MacroString}##MacroString{i}",
+                    ref macroString, 3000, new Vector2(ImGui.GetWindowSize().X * 0.7f, ImGui.GetTextLineHeightWithSpacing() + ImGui.GetTextLineHeight() * SubstringCount(macroString, "\n")), ImGuiInputTextFlags.CtrlEnterForNewLine))
                 {
                     Service.Configuration.Events[i].macroString = macroString;
                     Service.Configuration.Save();
@@ -152,7 +161,15 @@ internal partial class ComboConfigWindow
                     {
                         string TypeName = Service.Configuration.EventTypes[i].TypeName;
                         if (ImGui.InputText($"{LocalizationManager.RightLang.Configwindow_Events_RenameType}##Rename{i}",
-                                ref TypeName, 50))
+                                ref TypeName, 50, ImGuiInputTextFlags.EnterReturnsTrue))
+                        {
+                            Service.Configuration.EventTypes[i].TypeName = TypeName;
+                            Service.Configuration.Save();
+                        }
+                        ImGui.SameLine();
+                        Spacing();
+                        // 确认重命名
+                        if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_RenameAll}##RenameTypeAndEvents{i}"))
                         {
                             Service.Configuration.EventTypes[i].RenameType(TypeName);
                             Service.Configuration.Save();
@@ -203,7 +220,7 @@ internal partial class ComboConfigWindow
                             }
                             ImGui.SameLine();
                             Spacing();
-                            if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_AddType}##AddType{i}{j}"))
+                            if (ImGui.Button($"{LocalizationManager.RightLang.Configwindow_Events_SaveType}##SaveType{i}{j}"))
                             {
                                 // 加载在这里的事件本来有Type，当输入文字之后，需要添加到别的Type里或者新建Type
                                 // 确认输入的Type是不是在当前已有的Type里
@@ -232,8 +249,8 @@ internal partial class ComboConfigWindow
                                 Service.Configuration.Save();
                             }
                             string macroString = Service.Configuration.EventTypes[i].Events[j].macroString;
-                            if (ImGui.InputText($"{LocalizationManager.RightLang.Configwindow_Events_MacroString}##MacroString{i}{j}",
-                                ref macroString, 200))
+                            if (ImGui.InputTextMultiline($"{LocalizationManager.RightLang.Configwindow_Events_MacroString}##MacroString{i}{j}",
+                                ref macroString, 3000, new Vector2(ImGui.GetWindowSize().X * 0.7f, ImGui.GetTextLineHeightWithSpacing() + ImGui.GetTextLineHeight() * SubstringCount(macroString, "\n")), ImGuiInputTextFlags.CtrlEnterForNewLine))
                             {
                                 Service.Configuration.EventTypes[i].Events[j].macroString = macroString;
                                 Service.Configuration.Save();
