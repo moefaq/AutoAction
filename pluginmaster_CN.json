@@ -20,7 +20,7 @@
     "LastUpdate": 0,
     "DownloadLinkInstall": "https://github.com/moewcorp/AutoAction/releases/latest/download/latest_CN.zip",
     "DownloadLinkUpdate": "https://github.com/moewcorp/AutoAction/releases/latest/download/latest_CN.zip",
-    "DownloadLinkTesting": "https://github.com/moewcorp/AutoAction/releases/latest/download/latest_CN.zip",
+    "DownloadLinkTesting": "https://github.com/moewcorp/AutoAction/raw/main/test/latest.zip",
     "LoadPriority": 0,
     "ImageUrls": [
       "https://raw.githubusercontent.com/moewcorp/AutoAction/main/gifs/ExampleDNC.gif"
