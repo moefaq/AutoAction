@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using AutoAction.Combos.Script.Actions;
+﻿using AutoAction.Combos.Script.Actions;
+using System.Collections.Generic;
 
 namespace AutoAction.Localization;
 
@@ -198,7 +198,6 @@ internal class Strings
     public string Configwindow_About_XianYu { get; set; } = "Including but not limited to the following online sellers (in no particular order):";
     public string Configwindow_About_Owner { get; set; } = "Plugin author: moewcorp";
     public string Configwindow_About_Github { get; set; } = "Version updates for this plugin are posted on Github";
-    public string Configwindow_About_Discord { get; set; } = "Click to join Discord for discussion";
     public string Configwindow_About_Wiki { get; set; } = "Click to view Wiki";
     #endregion
 
@@ -296,21 +295,8 @@ internal class Strings
     public string JobRole_Healer { get; set; } = "Healer";
     public string JobRole_RangedPhysical { get; set; } = "Ranged Physical";
     public string JobRole_RangedMagicial { get; set; } = "Ranged Magicial";
-    public string JobRole_DiscipleoftheLand { get; set; } = "Disciple of the Land";
-    public string JobRole_DiscipleoftheHand { get; set; } = "Disciple of the Hand";
 
     #endregion
-
-    #region CraftActionType
-    public string CraftActionType_Progress { get; set; } = "Progress";
-    public string CraftActionType_Quality { get; set; } = "Quality";
-    public string CraftActionType_Status { get; set; } = "Status";
-    public string CraftActionType_Other { get; set; } = "Other";
-
-    #endregion
-
-    public string CraftingCombo_Name { get; set; } = "Disciples of the Hand";
-
 
     #region EnemyLocation
     public string EnemyLocation_None { get; set; } = "None";

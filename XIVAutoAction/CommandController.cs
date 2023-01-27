@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using AutoAction.Actions;
 using AutoAction.Actions.BaseAction;
-using AutoAction.Actions.BaseCraftAction;
 using AutoAction.Data;
 using AutoAction.Helpers;
 using AutoAction.Localization;
@@ -283,10 +282,6 @@ namespace AutoAction
                     {
                         Service.TargetManager.SetTarget(act.Target);
                     }
-                }
-                if (nextAction is BaseCraftAction craft)
-                {
-                    ActionUpdater.LastCraftAction = craft.ID;
                 }
             }
             return;
