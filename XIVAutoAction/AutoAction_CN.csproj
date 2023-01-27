@@ -11,8 +11,8 @@
   </PropertyGroup>
   <PropertyGroup />
 	<PropertyGroup>
-		<DalamudLibPath>E:\xivlauncher-cn\XIVLauncherCN\Roaming\addon\Hooks\dev\</DalamudLibPath>
-		<OutputPath>E:\xivlauncher-cn\XIVLauncherCN\Roaming\devPlugins\AutoAction_CN</OutputPath>
+    <DalamudLibPath>D:\dalam\addon\Hooks\dev\</DalamudLibPath>
+    <OutputPath>D:\Dalamud_plugins\AutoAction_CN</OutputPath>
 	</PropertyGroup>
   <ItemGroup>
 	  <Reference Include="Dalamud">
