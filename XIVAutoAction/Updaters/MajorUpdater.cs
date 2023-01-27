@@ -35,7 +35,6 @@ namespace AutoAction.Updaters
             PreviewUpdater.UpdatePreview();
 
             ActionUpdater.UpdateActionInfo();
-            SynthesisUpdater.UpdateSynthesis();
 
             TargetUpdater.UpdateHostileTargets();
             TargetUpdater.UpdateFriends();

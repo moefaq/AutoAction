@@ -11,7 +11,6 @@ using System.Linq;
 using System.Numerics;
 using AutoAction.Actions;
 using AutoAction.Actions.BaseAction;
-using AutoAction.Actions.BaseCraftAction;
 using AutoAction.Combos.CustomCombo;
 using AutoAction.Combos.Script;
 using AutoAction.Data;
@@ -362,16 +361,6 @@ internal partial class ComboConfigWindow : Window
                 {
                     ImGui.Text("Target Name: " + baseAct.Target.Name);
                 }
-#endif
-            }
-            else if (act is BaseCraftAction craft)
-            {
-#if DEBUG
-                ImGui.Text("Cost: " + craft.CPCost.ToString());
-                ImGui.Text("Progress: " + craft.Progress.ToString());
-                ImGui.Text("ProgressBase: " + craft.ProgressBase.ToString());
-                ImGui.Text("Quality: " + craft.Quality.ToString());
-                ImGui.Text("QualityBase: " + craft.QualityBase.ToString());
 #endif
             }
         });
