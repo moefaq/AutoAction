@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
@@ -11,8 +11,8 @@
   </PropertyGroup>
   <PropertyGroup />
 	<PropertyGroup>
-    <DalamudLibPath>D:\dalam\addon\Hooks\dev\</DalamudLibPath>
-    <OutputPath>D:\Dalamud_plugins</OutputPath>
+		<DalamudLibPath>E:\xivlauncher-cn\XIVLauncherCN\Roaming\addon\Hooks\dev\</DalamudLibPath>
+		<OutputPath>E:\xivlauncher-cn\XIVLauncherCN\Roaming\devPlugins\AutoAction_CN</OutputPath>
 	</PropertyGroup>
   <ItemGroup>
 	  <Reference Include="Dalamud">
@@ -43,17 +43,14 @@
 		  <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
 		  <Private>False</Private>
 	  </Reference>
-    <Reference Include="XivCommon">
-      <HintPath>XivCommon.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
 	
 <ItemGroup>
-    <EmbeddedResource Include="Localization\*.json" Exclude="Localization\Localization.json" />
+    <EmbeddedResource Include="Localization\*.json" />
 </ItemGroup>
 	
 <ItemGroup>
-  <PackageReference Include="DalamudPackager" Version="2.1.8" />
+  <PackageReference Include="DalamudPackager" Version="2.1.9" />
+  <PackageReference Include="XivCommon" Version="6.0.2" />
 </ItemGroup>
 </Project>  

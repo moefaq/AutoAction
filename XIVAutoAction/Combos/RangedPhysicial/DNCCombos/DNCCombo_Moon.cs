@@ -116,7 +116,7 @@ internal sealed class DNCCombo_Moon : DNCCombo_Base<CommandType>
         if (ExcutionStepGCD(out act)) return true;
 
         //¼¼ÇÉÎè²½
-        if (SettingBreak && InCombat && TechnicalStep.ShouldUse(out act, mustUse: true)) return true;
+        if (SettingBreak && InCombat && HaveHostilesInRange && TechnicalStep.ShouldUse(out act, mustUse: true)) return true;
 
         //¹¥»÷GCD
         if (AttackGCD(out act, Player.HasStatus(true, StatusID.Devilment))) return true;
