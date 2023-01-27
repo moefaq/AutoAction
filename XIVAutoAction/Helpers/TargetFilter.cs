@@ -186,7 +186,6 @@ namespace AutoAction.Helpers
             if (deathParty.Any())
             {
                 //确认一下死了的T有哪些。
-
                 var deathT = GetJobCategory(deathParty, JobRole.Tank);
                 int TCount = TargetUpdater.PartyTanks.Count();
 
@@ -198,12 +197,16 @@ namespace AutoAction.Helpers
 
                 //确认一下死了的H有哪些。
                 var deathH = GetJobCategory(deathParty, JobRole.Healer);
-
                 //如果H死了，就先救他。
                 if (deathH.Count() != 0) return deathH.First();
 
                 //如果T死了，就再救他。
                 if (deathT.Count() != 0) return deathT.First();
+
+                //确认一下死了的法系有哪些。
+                var deathRM = GetJobCategory(deathParty, JobRole.RangedMagicial);
+                //如果法系死了，再再救他。
+                if (deathRM.Count() != 0) return deathRM.First();
 
                 //T和H都还活着，那就随便救一个。
                 return deathParty.First();
