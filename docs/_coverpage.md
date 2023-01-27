@@ -1,9 +1,8 @@
-![logo](https://raw.githubusercontent.com/moewcorp/AutoAction/main/XIVAutoAttackIcon.png)
+![logo](/RotationSolverIcon_128.png)
 
-# **⚔️AutoAction** <small>1.0.0.0</small>
+# **⚔️Rotation Solver** <small>1.0.0.0</small>
 
-> Teach you how to perform better in combat! -- gamous
-> AutoAction
+> Based on the pve combat information in one frame, find the best action.
 
-[Github](https://github.com/moewcorp/AutoAction)
-[Start](#/?id=autoaction⚔%ef%b8%8f)
+[Github](https://github.com/ArchiDog1998/RotationSolver)
+[Start](#RotationSolver⚔️)
