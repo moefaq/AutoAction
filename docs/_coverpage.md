@@ -1,9 +1,8 @@
-![logo](https://raw.githubusercontent.com/moewcorp/AutoAction/main/XIVAutoAttackIcon.png)
+![logo](/Icon.ico)
 
-# **⚔️AutoAction** <small>1.0.0.0</small>
+# **⚔️Auto Action** <small>1.0.0.0</small>
 
-> Teach you how to perform better in combat! -- gamous
-> AutoAction
+> 最好的PVE循环
 
 [Github](https://github.com/moewcorp/AutoAction)
-[Start](#/?id=autoaction⚔%ef%b8%8f)
+[Start](#AutoAction⚔️)

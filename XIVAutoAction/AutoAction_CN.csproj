@@ -3,16 +3,17 @@
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
     <TargetFramework>net6.0-windows</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Debug;Release;Release-dev</Configurations>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>Preview</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup />
 	<PropertyGroup>
-		<DalamudLibPath>E:\xivlauncher-cn\XIVLauncherCN\Roaming\addon\Hooks\dev\</DalamudLibPath>
-		<OutputPath>E:\xivlauncher-cn\XIVLauncherCN\Roaming\devPlugins\AutoAction_CN</OutputPath>
+    <DalamudLibPath>D:\dalam\addon\Hooks\dev\</DalamudLibPath>
+    <OutputPath>..\DevVersion</OutputPath>
 	</PropertyGroup>
   <ItemGroup>
 	  <Reference Include="Dalamud">

@@ -1,3 +1,3 @@
 # AutoAction⚔️
 
-What a great plugin it is!
+To be continued.
