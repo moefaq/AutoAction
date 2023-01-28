@@ -1,7 +1,7 @@
 [
   {
     "Disabled": false,
-    "Testing": false,
+    "Testing": true,
     "IsThirdParty": false,
     "Author": "moewcorp",
     "Name": "Auto Action",
