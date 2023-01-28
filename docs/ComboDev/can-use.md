@@ -4,7 +4,7 @@ It is a complex method which used everywhere. In one word, it will check a lot o
 
 Level, Enabled, Action Status, MP, Player Status, Coll down, Combo, Moving (for casting), Charges, Target, etc.
 
-Check the source code [here](https://github.com/ArchiDog1998/RotationSolver/blob/dae05a0777ed567ac4f7512244887fe7e7cc9f2a/RotationSolver/Actions/BaseAction/BaseAction_ActionInfo.cs#L54).
+Check the source code [here](https://github.com/moewcorp/AutoAction/blob/dae05a0777ed567ac4f7512244887fe7e7cc9f2a/AutoAction/Actions/BaseAction/BaseAction_ActionInfo.cs#L54).
 
 ## Usage
 

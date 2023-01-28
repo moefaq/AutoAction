@@ -1,1 +1,1 @@
-# Develop the entire plugin.
+# 开发插件本体

@@ -10,7 +10,7 @@ In order to maintenance this, I recommend a plugin called [SimpleTweaksPlugin](h
 
 ![Get Action ID](assets/image-20230123142852650.png)
 
-Then modify the id in this [ActionID](https://github.com/ArchiDog1998/RotationSolver/blob/main/RotationSolver/Data/ActionID.cs) file in the right region.
+Then modify the id in this [ActionID](https://github.com/moewcorp/AutoAction/blob/main/AutoAction/Data/ActionID.cs) file in the right region.
 
 ## StatudID
 
@@ -18,13 +18,13 @@ When you use `Debug` mode to build this plugin, you'll see the tabitem like this
 
 ![Status ID](assets/image-20230123144205172.png)
 
-Then modify the id in this [StatusID](https://github.com/ArchiDog1998/RotationSolver/blob/main/RotationSolver/Data/StatusID.cs) file.
+Then modify the id in this [StatusID](https://github.com/moewcorp/AutoAction/blob/main/AutoAction/Data/StatusID.cs) file.
 
-Oh, yeah! You find my debug tab! There is your id hash. This is a `little easter egg`.  People will great you the developer if you are in the same duty. So how to add this? Add your Hash id to this [field](https://github.com/ArchiDog1998/RotationSolver/blob/dd517a0bb3a664d008b8eb88d7bc9a0da56e0973/RotationSolver/Helpers/ConfigurationHelper.cs#L29). And then, you are in!
+Oh, yeah! You find my debug tab! There is your id hash. This is a `little easter egg`.  People will great you the developer if you are in the same duty. So how to add this? Add your Hash id to this [field](https://github.com/moewcorp/AutoAction/blob/dd517a0bb3a664d008b8eb88d7bc9a0da56e0973/AutoAction/Helpers/ConfigurationHelper.cs#L29). And then, you are in!
 
 ## Action
 
-All the action you used in rotation are defined in this [directory](https://github.com/ArchiDog1998/RotationSolver/tree/main/RotationSolver/Rotations/Basic). It is great to modify it for all rotation developers in this job. 
+All the action you used in rotation are defined in this [directory](https://github.com/moewcorp/AutoAction/tree/main/AutoAction/Rotations/Basic). It is great to modify it for all rotation developers in this job. 
 
 There are several parameters you need to know for constructor.
 
@@ -48,4 +48,4 @@ Some Property you can set.
 
 ## FlagID
 
-For melee job, some actions have positional. In order to make the position feedback right, we need to maintain one [table](https://github.com/ArchiDog1998/RotationSolver/blob/main/RotationSolver/Helpers/ConfigurationHelper.cs#L10). Please put the number in flytext when hitting the right positional on this table.
+For melee job, some actions have positional. In order to make the position feedback right, we need to maintain one [table](https://github.com/moewcorp/AutoAction/blob/main/AutoAction/Helpers/ConfigurationHelper.cs#L10). Please put the number in flytext when hitting the right positional on this table.

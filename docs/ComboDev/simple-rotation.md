@@ -1,14 +1,12 @@
-# Simple Rotation
+# 第一个循环
 
-After choosing the job to develop, you can write a simple rotation to test!
+选择你喜欢的职业创作你的第一个循环吧！
 
-Please always add a new rotation for your own instead of modifying the rotation that is not created by you.
+## 新建文件
 
-## Add a new rotation
+在对应职业的文件夹下创建新的循环文件，文件夹路径为`/Combos/职业类型/XXXCombos/`，循环文件后缀是`.cs`，建议命名为`职业名_循环名`。
 
-Create a new rotation in the right job folder, and named it with `Job Abbreviation`\_`Rotation Name`, inherited from `Job Abbreviation`\_Base.
 
-In this example, I create a rpr rotation named with `Test`.
 
 ![Create a new rotation](assets/image-20230122154937426.png)
 
@@ -25,10 +23,10 @@ So we need a rotation like `Slice` -> `WaxingSlice` -> `InfernalSlice`.
 And we know that 3 need 2 to use, 2 need 1 to use. We write like 321.
 
 ```c#
-using RotationSolver.Actions;
-using RotationSolver.Rotations.Basic;
+using AutoAction.Actions;
+using AutoAction.Rotations.Basic;
 
-namespace RotationSolver.Rotations.Melee.RPR;
+namespace AutoAction.Rotations.Melee.RPR;
 
 internal class RPR_Test : RPR_Base
 {
@@ -60,7 +58,7 @@ We will discuss the Action in the future, so let's just do it.
 
 After finished the file adding. You need to build the project again. Somethimes, reuild maybe.
 
-![Build yourself](assets/image-20230122153420605.png)
+![Build yourself](assets/BuildDll.png)
 
 ## Use your own rotation in Game
 

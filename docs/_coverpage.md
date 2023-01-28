@@ -1,8 +1,8 @@
-![logo](/RotationSolverIcon_128.png)
+![logo](/Icon.ico)
 
-# **⚔️Rotation Solver** <small>1.0.0.0</small>
+# **⚔️Auto Action** <small>1.0.0.0</small>
 
-> Based on the pve combat information in one frame, find the best action.
+> 最好的PVE循环
 
-[Github](https://github.com/ArchiDog1998/RotationSolver)
-[Start](#RotationSolver⚔️)
+[Github](https://github.com/moewcorp/AutoAction)
+[Start](#AutoAction⚔️)

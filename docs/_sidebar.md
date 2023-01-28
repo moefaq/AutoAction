@@ -1,6 +1,6 @@
 - Getting Started
   - [Quick Start](quick-start.md)
 - Development
-  - [**Rotation Development**](RotationDev/)
+  - [**Rotation Development**](ComboDev/)
   - [**Plugin Development**](Development/)
 

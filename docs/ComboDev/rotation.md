@@ -6,11 +6,11 @@ We just started a simple 123 rotation. Obviously, it doesn't solve the complex c
 
 General Cooldown Actions, which contains Weapon Skill and Spell.
 
-But in Rotation Solver, not only actions above can add into these methods. It means, when GCD is cooled down, will choose one of them to use.
+But in Auto Action, not only actions above can add into these methods. It means, when GCD is cooled down, will choose one of them to use.
 
 For example. BLM is a special job. In many case it needs to use `Triplecast` after `Fire4`. But when fire 4 is finished, GCD is cooled down. So `Triplecast`  is a case that need to be used in GCD.
 
-The code that defines these methods is [here](https://github.com/ArchiDog1998/RotationSolver/blob/78ede8c386e3c37708b3cb15f259ccf4b839caaf/RotationSolver/Rotations/CustomRotation/CustomRotation_GCD.cs#L79-L109).
+The code that defines these methods is [here](https://github.com/moewcorp/AutoAction/blob/78ede8c386e3c37708b3cb15f259ccf4b839caaf/AutoAction/Rotations/CustomRotation/CustomRotation_GCD.cs#L79-L109).
 
 ### EmergencyGCD
 
@@ -93,11 +93,11 @@ Just normal GCD. Always for attack.
 
 ## Ability
 
-If GCD is not cooled down, Rotation Solver will find an action from abilities.
+If GCD is not cooled down, Auto Action will find an action from abilities.
 
 `abilitiesRemaining` means how many abilities will be used before next GCD. 
 
-The code that defines these methods is [here](https://github.com/ArchiDog1998/RotationSolver/blob/78ede8c386e3c37708b3cb15f259ccf4b839caaf/RotationSolver/Rotations/CustomRotation/CustomRotation_Ability.cs#L251-L306).
+The code that defines these methods is [here](https://github.com/moewcorp/AutoAction/blob/78ede8c386e3c37708b3cb15f259ccf4b839caaf/AutoAction/Rotations/CustomRotation/CustomRotation_Ability.cs#L251-L306).
 
 ### EmergencyAbility
 
