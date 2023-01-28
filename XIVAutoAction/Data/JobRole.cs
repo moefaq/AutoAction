@@ -12,8 +12,6 @@ namespace AutoAction.Data
         Healer = 4,
         RangedPhysical = 5,
         RangedMagicial = 6,
-        DiscipleoftheLand = 7,
-        DiscipleoftheHand = 8,
     }
 
     internal static class JobRoleExtension
@@ -28,8 +26,6 @@ namespace AutoAction.Data
                 {
                     30 => JobRole.RangedPhysical,
                     31 => JobRole.RangedMagicial,
-                    32 => JobRole.DiscipleoftheLand,
-                    33 => JobRole.DiscipleoftheHand,
                     _ => JobRole.None,
                 };
             }
@@ -45,8 +41,6 @@ namespace AutoAction.Data
             JobRole.Healer => LocalizationManager.RightLang.JobRole_Healer,
             JobRole.RangedPhysical => LocalizationManager.RightLang.JobRole_RangedPhysical,
             JobRole.RangedMagicial => LocalizationManager.RightLang.JobRole_RangedMagicial,
-            JobRole.DiscipleoftheLand => LocalizationManager.RightLang.JobRole_DiscipleoftheLand,
-            JobRole.DiscipleoftheHand => LocalizationManager.RightLang.JobRole_DiscipleoftheHand,
             _ => string.Empty,
         };
     }
