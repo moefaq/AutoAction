@@ -105,18 +105,21 @@ namespace AutoAction.Updaters
                 party.Where(obj => obj != null && obj.GameObject is BattleChara)
                 .Select(obj => obj.GameObject as BattleChara);
 
-            //添加亲信
-            PartyMembers = PartyMembers.Union(Service.ObjectTable.Where(obj => obj.SubKind == 9 && obj is BattleChara).Cast<BattleChara>());
-
-            HavePet = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
+            // 添加亲信
+            // PartyMembers = PartyMembers.Union(Service.ObjectTable.Where(obj => obj.SubKind == 9 && obj is BattleChara).Cast<BattleChara>());
+            PartyMembers = PartyMembers.Union(ObjectTableLimited.GetSubKind(9));
+            // 难道找陆行鸟和召唤兽都要遍历一遍ObjectTable吗！！！！
+            // 我求求你自动召唤召唤兽
+            HavePet = true;
+            /*HavePet = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
                     && npc.BattleNpcKind == BattleNpcSubKind.Pet
-                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;
-
-            HaveChocobo = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
+                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;*/
+            // 有没有陆行鸟，只和青魔有关，既然青魔还没写好，那无视了
+            HaveChocobo = false;
+            /*HaveChocobo = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
                     && npc.BattleNpcKind == BattleNpcSubKind.Chocobo
-                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;
-
-            AllianceMembers = Service.ObjectTable.OfType<PlayerCharacter>();
+                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;*/
+            AllianceMembers = ObjectTableLimited.GetPlayers();
 
             PartyTanks = PartyMembers.GetJobCategory(JobRole.Tank);
             PartyHealers = PartyMembers.GetObjectInRadius(30).GetJobCategory(JobRole.Healer);

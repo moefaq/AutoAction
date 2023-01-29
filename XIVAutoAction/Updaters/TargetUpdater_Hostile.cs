@@ -45,7 +45,7 @@ namespace AutoAction.Updaters
         internal unsafe static void UpdateHostileTargets()
         {
             //能打的目标
-            AllTargets = TargetFilter.GetTargetable(TargetFilter.GetObjectInRadius(Service.ObjectTable, 30).Where(obj =>
+            AllTargets = TargetFilter.GetTargetable(TargetFilter.GetObjectInRadius(ObjectTableLimited.GetGameObjects(), 30).Where(obj =>
             {
                 if (obj is BattleChara c && c.CurrentHp != 0)
                 {

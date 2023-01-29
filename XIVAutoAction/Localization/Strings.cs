@@ -118,6 +118,7 @@ internal class Strings
     public string Configwindow_Params_InterruptibleTime { get; set; } = "Set the delay of interrupting";
     public string Configwindow_Params_SpecialDuration { get; set; } = "Set the duration of special windows set by commands";
     public string Configwindow_Params_AddDotGCDCount { get; set; } = "Set GCD advance of DOT refresh";
+    public string Configwindow_Params_MaxObjectsLimit { get; set; } = "Max Objects Limit(10-596)";
     public string Configwindow_Params_DisplayEnhancement { get; set; } = "Display enhancement";
     public string Configwindow_Params_PoslockCasting { get; set; } = "Lock the movement when casting";
     public string Configwindow_Params_PoslockModifier { get; set; } = "Set the modifier key to unlock the movement temporary";
