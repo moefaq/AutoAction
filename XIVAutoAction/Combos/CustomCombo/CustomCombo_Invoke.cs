@@ -64,7 +64,6 @@ namespace AutoAction.Combos.CustomCombo
                     if (CheckAction(GCDaction.ID))
                     {
                         string location = GCDaction.EnermyLocation.ToName();
-                        if (Service.Configuration.SayingLocation) Watcher.Speak(location);
                         if (Service.Configuration.ShowLocation) Service.ToastGui.ShowQuest(" " + location, new Dalamud.Game.Gui.Toast.QuestToastOptions()
                         {
                             IconId = Service.DataManager.GetExcelSheet<Lumina.Excel.GeneratedSheets.Action>().GetRow(

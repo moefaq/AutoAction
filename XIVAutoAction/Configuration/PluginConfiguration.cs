@@ -13,7 +13,6 @@ public class PluginConfiguration : IPluginConfiguration
     public int Version { get; set; } = 6;
     //public int HostileCount { get; set; } = 3;
     //public int PartyCount { get; set; } = 2;
-    public int VoiceVolume { get; set; } = 80;
     public SortedSet<string> EnabledCombos { get; private set; } = new SortedSet<string>();
     public SortedSet<uint> DiabledActions { get; private set; } = new SortedSet<uint>();
     public List<ActionEventInfo> Events { get; private set; } = new List<ActionEventInfo>();
@@ -32,9 +31,7 @@ public class PluginConfiguration : IPluginConfiguration
     public bool AutoUseTrueNorth { get; set; } = true;
     public bool ChangeTargetForFate { get; set; } = true;
     public bool MoveTowardsScreen { get; set; } = true;
-    public bool AutoSayingOut { get; set; } = false;
     public bool UseDtr { get; set; } = true;
-    public bool SayingLocation { get; set; } = true;
     public bool ShowLocation { get; set; } = true;
     public bool UseToast { get; set; } = true;
     public bool RaiseAll { get; set; } = false;

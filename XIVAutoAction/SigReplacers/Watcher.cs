@@ -185,48 +185,8 @@ namespace AutoAction.SigReplacers
             {
 
                 Service.FlyTextGui.AddFlyText(Dalamud.Game.Gui.FlyText.FlyTextKind.NamedIcon, 0, 0, 0, string.Format(LocalizationManager.RightLang.Action_WrongLocation, loc.Loc.ToName()), "", ImGui.GetColorU32(new Vector4(0.4f, 0, 0, 1)), action.Icon);
-                if (!string.IsNullOrEmpty(Service.Configuration.LocationWrongText))
-                {
-                    Speak(Service.Configuration.LocationWrongText);
-                }
             }
         }
-
-        internal static void Speak(string text, bool wait = false)
-        {
-            ExecuteCommand(
-                $@"Add-Type -AssemblyName System.speech; 
-                $speak = New-Object System.Speech.Synthesis.SpeechSynthesizer; 
-                $speak.Volume = ""{Service.Configuration.VoiceVolume}"";
-                $speak.Speak(""{text}"");");
-
-            void ExecuteCommand(string command)
-            {
-                string path = Path.GetTempPath() + Guid.NewGuid() + ".ps1";
-
-                // make sure to be using System.Text
-                using (StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8))
-                {
-                    sw.Write(command);
-
-                    ProcessStartInfo start = new ProcessStartInfo()
-                    {
-                        FileName = @"C:\Windows\System32\windowspowershell\v1.0\powershell.exe",
-                        LoadUserProfile = false,
-                        UseShellExecute = false,
-                        CreateNoWindow = true,
-                        Arguments = $"-executionpolicy bypass -File {path}",
-                        WindowStyle = ProcessWindowStyle.Hidden
-                    };
-
-                    Process process = Process.Start(start);
-
-                    if (wait)
-                        process.WaitForExit();
-                }
-            }
-        }
-
 
         public static void Dispose()
         {

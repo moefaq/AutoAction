@@ -226,13 +226,6 @@ internal partial class ComboConfigWindow
 
                 ImGui.Separator();
 
-                bool autoSayingOut = Service.Configuration.AutoSayingOut;
-                if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_AutoSayingOut, ref autoSayingOut))
-                {
-                    Service.Configuration.AutoSayingOut = autoSayingOut;
-                    Service.Configuration.Save();
-                }
-
                 bool useDtr = Service.Configuration.UseDtr;
                 if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_UseDtr, ref useDtr))
                 {
@@ -247,19 +240,10 @@ internal partial class ComboConfigWindow
                     Service.Configuration.Save();
                 }
 
-                ImGui.Spacing();
-
                 bool showlocation = Service.Configuration.ShowLocation;
                 if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_ShowLocation, ref showlocation))
                 {
                     Service.Configuration.ShowLocation = showlocation;
-                    Service.Configuration.Save();
-                }
-
-                bool sayingLocation = Service.Configuration.SayingLocation;
-                if (ImGui.Checkbox(LocalizationManager.RightLang.Configwindow_Params_SayingLocation, ref sayingLocation))
-                {
-                    Service.Configuration.SayingLocation = sayingLocation;
                     Service.Configuration.Save();
                 }
 
@@ -272,14 +256,6 @@ internal partial class ComboConfigWindow
                 if (ImGui.IsItemHovered())
                 {
                     ImGui.SetTooltip(LocalizationManager.RightLang.Configwindow_Params_ShowLocationWrongDesc);
-                }
-
-                int voiceVolume = Service.Configuration.VoiceVolume;
-                ImGui.SetNextItemWidth(DRAG_NUMBER_WIDTH);
-                if (ImGui.DragInt(LocalizationManager.RightLang.Configwindow_Params_VoiceVolume, ref voiceVolume, 0.2f, 0, 100))
-                {
-                    Service.Configuration.VoiceVolume = voiceVolume;
-                    Service.Configuration.Save();
                 }
 
                 var locationWrongText = Service.Configuration.LocationWrongText;

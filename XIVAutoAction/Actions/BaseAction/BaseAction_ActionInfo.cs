@@ -30,6 +30,7 @@ namespace AutoAction.Actions.BaseAction
         static readonly uint[] BadStatus = new uint[]
         {
             579, //状态限制
+            574, //职业不对
             573, //没学会
             572, //一些额外条件未满足
         };
@@ -106,15 +107,14 @@ namespace AutoAction.Actions.BaseAction
             act = this;
 
             //玩家都没有。。。
-            if (Service.ClientState.LocalPlayer == null) return false;
             var player = Service.ClientState.LocalPlayer;
+            if (player == null) return false;
 
             //用户不让用！
             if (!skipDisable && !IsEnabled) return false;
 
-            //技能状态不对，可能是没学会。
-            if (BadStatus.Contains(ActionManager.Instance()->GetActionStatus(ActionType.Spell, AdjustedID)))
-                return false;
+            //技能状态不对
+            if (BadStatus.Contains(ActionManager.Instance()->GetActionStatus(ActionType.Spell, AdjustedID))) return false;
 
             //等级不够
             if (!EnoughLevel) return false;

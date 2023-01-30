@@ -32,7 +32,7 @@ namespace AutoAction.Updaters
             {
                 if (dtrEntry == null)
                 {
-                    dtrEntry = Service.DtrBar.Get("Auto Attack");
+                    dtrEntry = Service.DtrBar.Get("Auto Action");
                 }
                 dtrEntry.Shown = true;
                 dtrEntry.Text = new SeString(
@@ -52,7 +52,7 @@ namespace AutoAction.Updaters
             ByteColor greenColor = new ByteColor() { A = 255, R = 60, G = 120, B = 30 };
 
             bool canMove = !Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.OccupiedInEvent]
-                && !Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.Casting];
+                           && !Service.Conditions[Dalamud.Game.ClientState.Conditions.ConditionFlag.Casting];
 
             ByteColor c = canMove && Service.Configuration.CheckForCasting ? greenColor : redColor;
             var isTarDead = false;

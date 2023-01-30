@@ -67,7 +67,6 @@ namespace AutoAction
                     if (!value)
                     {
                         OverlayWindow.ShouldLocation = EnemyLocation.None;
-                        if (Service.Configuration.AutoSayingOut) Watcher.Speak("Cancel");
                         _stateString = "Off";
                         UpdateToast();
                     }
@@ -83,7 +82,6 @@ namespace AutoAction
             {
                 if (!value)
                 {
-                    if (Service.Configuration.AutoSayingOut) Watcher.Speak("Manual");
                     _stateString = "Manual";
                     UpdateToast();
                 }
@@ -98,7 +96,6 @@ namespace AutoAction
         private static void StartHealArea()
         {
             _specialStateStartTime = DateTime.Now;
-            if (!HealArea && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Heal Area");
             _specialString = "Heal Area";
             HealArea = true;
             UpdateToast();
@@ -108,7 +105,6 @@ namespace AutoAction
         private static void StartHealSingle()
         {
             _specialStateStartTime = DateTime.Now;
-            if (!HealSingle && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Heal Single");
             _specialString = "Heal Single";
             HealSingle = true;
             UpdateToast();
@@ -118,7 +114,6 @@ namespace AutoAction
         private static void StartDefenseArea()
         {
             _specialStateStartTime = DateTime.Now;
-            if (!DefenseArea && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Defense Area");
             _specialString = "Defense Area";
             DefenseArea = true;
             UpdateToast();
@@ -127,7 +122,6 @@ namespace AutoAction
         private static void StartDefenseSingle()
         {
             _specialStateStartTime = DateTime.Now;
-            if (!DefenseSingle && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Defense Single");
             _specialString = "Defense Single";
             DefenseSingle = true;
             UpdateToast();
@@ -140,7 +134,6 @@ namespace AutoAction
                 Service.ClientState.LocalPlayer.ClassJob.Id).GetJobRole();
 
             string speak = role == JobRole.Tank ? "Shield" : "Esuna";
-            if (!EsunaOrShield && Service.Configuration.AutoSayingOut) Watcher.Speak("Start " + speak);
             _specialString = speak;
             EsunaOrShield = true;
             UpdateToast();
@@ -153,7 +146,6 @@ namespace AutoAction
                 Service.ClientState.LocalPlayer.ClassJob.Id).GetJobRole();
 
             string speak = role == JobRole.Tank ? "Shirk" : "Raise";
-            if (!RaiseOrShirk && Service.Configuration.AutoSayingOut) Watcher.Speak("Start " + speak);
             _specialString = speak;
 
             RaiseOrShirk = true;
@@ -163,8 +155,6 @@ namespace AutoAction
         private static void StartBreak()
         {
             _specialStateStartTime = DateTime.Now;
-
-            if (!Break && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Break");
             _specialString = "Break";
             Break = true;
             UpdateToast();
@@ -173,7 +163,6 @@ namespace AutoAction
         private static void StartAntiRepulsion()
         {
             _specialStateStartTime = DateTime.Now;
-            if (!AntiRepulsion && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Anti repulsion");
             _specialString = "Anti repulsion";
             AntiRepulsion = true;
             UpdateToast();
@@ -183,7 +172,6 @@ namespace AutoAction
         private static void StartMove()
         {
             _specialStateStartTime = DateTime.Now;
-            if (!Move && Service.Configuration.AutoSayingOut) Watcher.Speak("Start Move");
             _specialString = "Move";
             Move = true;
             UpdateToast();
@@ -192,11 +180,6 @@ namespace AutoAction
         internal static void ResetSpecial(bool sayout)
         {
             _specialStateStartTime = DateTime.MinValue;
-
-            if (sayout && Service.Configuration.AutoSayingOut &&
-                (HealArea || HealSingle || DefenseArea || DefenseSingle || EsunaOrShield || RaiseOrShirk || Break
-                || AntiRepulsion || Move)) Watcher.Speak("End Special");
-
             HealArea = HealSingle = DefenseArea = DefenseSingle = EsunaOrShield = RaiseOrShirk = Break
                 = AntiRepulsion = Move = false;
             _specialString = string.Empty;
@@ -230,7 +213,6 @@ namespace AutoAction
             }
 
             string speak = RightTargetingType.ToString();
-            if (Service.Configuration.AutoSayingOut) Watcher.Speak("Attack " + speak);
             _stateString = speak;
             AutoTarget = true;
 
@@ -247,10 +229,7 @@ namespace AutoAction
                 ResetSpecial(true);
             }
 
-            if (!AutoAttack)
-            {
-                return;
-            }
+            if (!AutoAttack) return;
 
             var localPlayer = Service.ClientState.LocalPlayer;
             if (localPlayer == null) return;
