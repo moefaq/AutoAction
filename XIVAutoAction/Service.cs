@@ -17,6 +17,7 @@ using Dalamud.Plugin;
 using AutoAction.Configuration;
 using AutoAction.Localization;
 using AutoAction.SigReplacers;
+using Dalamud.Game.ClientState.Buddy;
 
 namespace AutoAction;
 
@@ -76,5 +77,6 @@ internal class Service
     public static GamepadState GamepadState { get; private set; }
     [PluginService]
     public static Framework Framework { get; private set; }
-
+    [PluginService]
+    internal static BuddyList BuddyList { get; private set; }
 }

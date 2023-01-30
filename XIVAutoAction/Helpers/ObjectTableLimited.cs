@@ -1,4 +1,5 @@
-﻿using Dalamud.Game.ClientState.Objects;
+﻿using AutoAction.Updaters;
+using Dalamud.Game.ClientState.Objects;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 using System;
@@ -11,7 +12,12 @@ namespace AutoAction.Helpers
 {
     internal class ObjectTableLimited
     {
-#nullable enable
+        #nullable enable
+        // 该选取几个目标？
+        private static int ObjectsLimit()
+        {
+            return TargetUpdater.InPVP ? 5 : Service.Configuration.MaxObjectsLimit;
+        }
         // 实现带有限制的找id
         public static GameObject? SearchById(uint objectId)
         {
@@ -19,7 +25,7 @@ namespace AutoAction.Helpers
             {
                 return null;
             }
-            for (var i = 0; i < Service.Configuration.MaxObjectsLimit * 2; i += 2)
+            for (var i = 0; i < ObjectsLimit() * 2; i += 2)
             {
                 var item = Service.ObjectTable[i];
                 if (item is not GameObject obj)
@@ -35,7 +41,7 @@ namespace AutoAction.Helpers
         public static IEnumerable<BattleChara>? GetOtherCharas()
         {
             List<BattleChara> BCList = new List<BattleChara>();
-            for (var i = 0; i < Service.Configuration.MaxObjectsLimit * 2; i += 2)
+            for (var i = 0; i < ObjectsLimit() * 2; i += 2)
             {
                 var item = Service.ObjectTable[i];
                 if (item is not BattleChara obj || obj.ObjectId == Service.ClientState.LocalPlayer.ObjectId)
@@ -49,7 +55,7 @@ namespace AutoAction.Helpers
         public static IEnumerable<BattleChara>? GetSubKind(byte kind)
         {
             List<BattleChara> BCList = new List<BattleChara>();
-            for (var i = 0; i < Service.Configuration.MaxObjectsLimit * 2; i += 2)
+            for (var i = 0; i < ObjectsLimit() * 2; i += 2)
             {
                 var item = Service.ObjectTable[i];
                 if (item is not BattleChara obj || obj.SubKind != kind)
@@ -63,7 +69,7 @@ namespace AutoAction.Helpers
         public static IEnumerable<PlayerCharacter>? GetPlayers()
         {
             List<PlayerCharacter> PCList = new List<PlayerCharacter>();
-            for (var i = 0; i < Service.Configuration.MaxObjectsLimit * 2; i += 2)
+            for (var i = 0; i < ObjectsLimit() * 2; i += 2)
             {
                 var item = Service.ObjectTable[i];
                 if (item is PlayerCharacter player)
@@ -78,7 +84,7 @@ namespace AutoAction.Helpers
         public static IEnumerable<GameObject>? GetGameObjects()
         {
             List<GameObject> GOList = new List<GameObject>();
-            for (var i = 0; i < Service.Configuration.MaxObjectsLimit * 2; i += 2)
+            for (var i = 0; i < ObjectsLimit() * 2; i += 2)
             {
                 var item = Service.ObjectTable[i];
                 if(item is GameObject gameObject) {
