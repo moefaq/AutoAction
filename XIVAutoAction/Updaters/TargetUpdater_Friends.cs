@@ -12,6 +12,7 @@ using System.Text;
 using AutoAction.Data;
 using AutoAction.Helpers;
 using AutoAction.Localization;
+using FFXIVClientStructs.FFXIV.Client.Game;
 
 namespace AutoAction.Updaters
 {
@@ -96,6 +97,10 @@ namespace AutoAction.Updaters
         /// 血量没有满
         /// </summary>
         internal static bool HPNotFull { get; private set; } = false;
+        /// <summary>
+        /// 在PVP里
+        /// </summary>
+        internal static bool InPVP { get; private set; } = false;
 
         internal unsafe static void UpdateFriends()
         {
@@ -105,18 +110,22 @@ namespace AutoAction.Updaters
                 party.Where(obj => obj != null && obj.GameObject is BattleChara)
                 .Select(obj => obj.GameObject as BattleChara);
 
-            //添加亲信
-            PartyMembers = PartyMembers.Union(Service.ObjectTable.Where(obj => obj.SubKind == 9 && obj is BattleChara).Cast<BattleChara>());
-
-            HavePet = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
+            // 判断PVP状态
+            InPVP = GameMain.IsInPvPArea() || GameMain.IsInPvPInstance();
+            // 添加亲信
+            // PartyMembers = PartyMembers.Union(Service.ObjectTable.Where(obj => obj.SubKind == 9 && obj is BattleChara).Cast<BattleChara>());
+            PartyMembers = PartyMembers.Union(ObjectTableLimited.GetSubKind(9));
+            // 难道找陆行鸟和召唤兽都要遍历一遍ObjectTable吗！！！！
+            HavePet = Service.BuddyList.PetBuddyPresent;
+            /*HavePet = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
                     && npc.BattleNpcKind == BattleNpcSubKind.Pet
-                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;
-
-            HaveChocobo = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
+                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;*/
+            // 有没有陆行鸟
+            HaveChocobo = Service.BuddyList.CompanionBuddyPresent;
+            /*HaveChocobo = Service.ObjectTable.Where(obj => obj != null && obj is BattleNpc npc
                     && npc.BattleNpcKind == BattleNpcSubKind.Chocobo
-                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;
-
-            AllianceMembers = Service.ObjectTable.OfType<PlayerCharacter>();
+                    && npc.OwnerId == Service.ClientState.LocalPlayer.ObjectId).Count() > 0;*/
+            AllianceMembers = ObjectTableLimited.GetPlayers();
 
             PartyTanks = PartyMembers.GetJobCategory(JobRole.Tank);
             PartyHealers = PartyMembers.GetObjectInRadius(30).GetJobCategory(JobRole.Healer);
@@ -125,7 +134,6 @@ namespace AutoAction.Updaters
             DeathPeopleAll = AllianceMembers.GetDeath().GetObjectInRadius(30);
             DeathPeopleParty = PartyMembers.GetDeath().GetObjectInRadius(30);
             MaintainDeathPeople();
-
             WeakenPeople = TargetFilter.GetObjectInRadius(PartyMembers, 30).Where(p =>
             {
                 foreach (var status in p.StatusList)

@@ -146,7 +146,9 @@ namespace AutoAction.Actions.BaseAction
 
         private bool TargetAreaMove(float range, bool mustUse, out BattleChara target)
         {
-            var availableCharas = Service.ObjectTable.Where(b => b.ObjectId != Service.ClientState.LocalPlayer.ObjectId).OfType<BattleChara>();
+            // 这本质是搜索不是自己的全部BattleCharacter
+            // var availableCharas = Service.ObjectTable.Where(b => b.ObjectId != Service.ClientState.LocalPlayer.ObjectId).OfType<BattleChara>();
+            var availableCharas = ObjectTableLimited.GetOtherCharas();
             target = ChoiceTarget(TargetFilter.GetObjectInRadius(availableCharas, range), mustUse);
             if (target == null) return false;
             _position = target.Position;

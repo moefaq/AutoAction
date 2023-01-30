@@ -60,6 +60,7 @@ internal partial class ComboConfigWindow
                     Service.Configuration.SpecialDuration = 3;
                     Service.Configuration.InterruptibleTime = 0.5f;
                     Service.Configuration.AddDotGCDCount = 2;
+                    Service.Configuration.MaxObjectsLimit = 100;
                     Service.Configuration.Save();
                 }
 
@@ -92,6 +93,14 @@ internal partial class ComboConfigWindow
                 if (ImGui.DragInt(LocalizationManager.RightLang.Configwindow_Params_AddDotGCDCount, ref addDotGCDCount, 0.1f, 1, 3))
                 {
                     Service.Configuration.AddDotGCDCount = addDotGCDCount;
+                    Service.Configuration.Save();
+                }
+
+                int maxObjects = Service.Configuration.MaxObjectsLimit;
+                ImGui.SetNextItemWidth(DRAG_NUMBER_WIDTH);
+                if (ImGui.DragInt(LocalizationManager.RightLang.Configwindow_Params_MaxObjectsLimit, ref maxObjects, 10f, 10, 596))
+                {
+                    Service.Configuration.MaxObjectsLimit = maxObjects;
                     Service.Configuration.Save();
                 }
             }

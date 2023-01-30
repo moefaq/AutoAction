@@ -94,6 +94,7 @@ public class PluginConfiguration : IPluginConfiguration
     public List<TargetingType> TargetingTypes { get; set; } = new List<TargetingType>();
     public int TargetingIndex { get; set; } = 0;
     public bool EnableEvents { get; set; } = true;
+    public int MaxObjectsLimit { get; set; } = 100;
     public void Save()
     {
         Service.Interface.SavePluginConfig(this);

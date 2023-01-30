@@ -37,7 +37,7 @@
     "Author": "moewcorp",
     "Name": "Auto Action（测试版）",
     "Punchline": "Teach you how to perform better in combat! -- gamous",
-    "Description": "本插件开源免费！请不要以【任何付费方式】获取本插件！\n如果有不好用的地方或者循环不合理，或者某职业需要添加选项，请及时联系，谢谢！",
+    "Description": "本插件开源免费！请不要以【任何付费方式】获取本插件！\n如果有不好用的地方或者循环不合理，或者某职业需要添加选项，请及时联系，谢谢！\n 如果已安装正式版可以卸载正式版后再安装测试版，配置文件是通用的。",
     "Tags": ["Attack"],
     "CategoryTags": ["jobs"],
     "IsHide": false,

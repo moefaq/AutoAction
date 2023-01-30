@@ -77,6 +77,7 @@
   "Configwindow_Params_InterruptibleTime": "打断技能的使用延迟",
   "Configwindow_Params_SpecialDuration": "指令设定的特殊窗口期持续时长",
   "Configwindow_Params_AddDotGCDCount": "刷新DoT的GCD提前量",
+  "Configwindow_Params_MaxObjectsLimit": "最大物体数量（10-596）",
   "Configwindow_Params_DisplayEnhancement": "提示增强",
   "Configwindow_Params_PoslockCasting": "使用咏唱移动锁",
   "Configwindow_Params_PoslockModifier": "无视咏唱锁热键",

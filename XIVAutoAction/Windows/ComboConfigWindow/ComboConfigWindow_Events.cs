@@ -115,9 +115,9 @@ internal partial class ComboConfigWindow
                     {
                         // 如果是当前没有的Type，则创建
                         Service.Configuration.EventTypes.Add(new ActionEventType(eventType, Service.Configuration.Events[i]));
-                        // 删除当前的event
-                        Service.Configuration.Events.RemoveAt(i);
                     }
+                    // 删除当前的event
+                    Service.Configuration.Events.RemoveAt(i);
                     Service.Configuration.Save();
                 }
                 int macroindex = Service.Configuration.Events[i].MacroIndex;

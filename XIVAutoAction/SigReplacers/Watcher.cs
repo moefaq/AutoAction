@@ -70,8 +70,9 @@ namespace AutoAction.SigReplacers
             var action = Service.DataManager.GetExcelSheet<Action>().GetRow((uint)Marshal.ReadInt32(effectHeader, 0x8));
 
             //获得目标
-            var tar = Service.ObjectTable.SearchById((uint)Marshal.ReadInt32(effectHeader)) ?? Service.ClientState.LocalPlayer;
-
+            var tar = ObjectTableLimited.SearchById((uint)Marshal.ReadInt32(effectHeader)) ?? Service.ClientState.LocalPlayer;
+            //BattleChara b = (BattleChara)tar;
+            //Dalamud.Logging.PluginLog.Log(b.CurrentHp.ToString());
             //获得身为技能是否正确flag
             var flag = Marshal.ReadByte(effectArray + 3);
             RecordAction(tar, action, flag);
