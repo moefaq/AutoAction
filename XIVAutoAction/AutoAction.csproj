@@ -1,56 +1,56 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <TargetFramework>net6.0</TargetFramework>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>Preview</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <PropertyGroup />
-	<PropertyGroup>
-		<OutputPath>..\DevPlugins\AutoAction</OutputPath>
-		<DalamudLibPath>..\..\DalamudDep\</DalamudLibPath>
-	</PropertyGroup>
+  <PropertyGroup>
+    <DalamudLibPath>$(AppData)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+    <OutputPath>E:\Local_Dalamud_plugin\AutoAction</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
-	  <Reference Include="Dalamud">
-		  <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-	  <Reference Include="ImGui.NET">
-		  <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-	  <Reference Include="ImGuiScene">
-		  <HintPath>$(DalamudLibPath)ImGuiScene.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-	  <Reference Include="Lumina">
-		  <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-	  <Reference Include="Lumina.Excel">
-		  <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-	  <Reference Include="FFXIVClientStructs">
-		  <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
-	  <Reference Include="Newtonsoft.Json">
-		  <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
+    <Reference Include="Dalamud">
+      <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ImGui.NET">
+      <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ImGuiScene">
+      <HintPath>$(DalamudLibPath)ImGuiScene.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Lumina">
+      <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Lumina.Excel">
+      <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FFXIVClientStructs">
+      <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
-	
-<ItemGroup>
-    <EmbeddedResource Include="Localization\*.json" Exclude="Localization\Localization.json" />
-</ItemGroup>
-	
-<ItemGroup>
-  <PackageReference Include="DalamudPackager" Version="2.1.8" />
-</ItemGroup>
 
-</Project>  
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="XivCommon" Version="6.0.2" />
+  </ItemGroup>
+</Project>
